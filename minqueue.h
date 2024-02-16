@@ -14,13 +14,13 @@ class Minqueue{
 
     public:
                     Minqueue            ( void );
-                    Minqueue            (T* A, int n);
+                    Minqueue            ( T* A, int n );
                     ~Minqueue           ( void );
         void        insert              ( const T x ):
         T           min                 ( void );
         T           extract_min         ( void );
         void        decrease_key        ( int i, T k );
-        void        min_heapify         (int i);
+        void        min_heapify         ( int i );
         void        build_min_heap      ( void );
         void        heapsort            ( const T& A );
         string      to_string           ( void );
