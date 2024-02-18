@@ -172,7 +172,7 @@ void MinQueue<T>::build_heap( void )
 }
 
 //========================================================
-// heapsort
+// sort
 //========================================================
 
 template <class T>
@@ -187,5 +187,53 @@ void MinQueue<T>::sort( const T* A )
         A[array-i-1] = ptrHeap[i];
         heap--;
         min_heapify(0);
+    }
+}
+
+//========================================================
+// to_string
+// Converts Minqueue object to c++ string type.
+// Parameters: none
+// Return value: string with the elements in set 
+// separated by a single space and starting at the head
+// Pre-condition: exists a Minqueue object
+// Post-condition: return a string of the object's data
+//========================================================
+template <class T>
+string MinQueue<T>::to_string( void )
+{
+    stringstream result;
+    for(i = 0; i <= heap; i++)
+    {
+        result << ptrHeap[i] << " ";
+    }
+
+    return result.str();
+}
+
+//========================================================
+// set
+// Sets index i in the member array to val
+// Parameters: i, val
+// Return value: none, but changes object 
+// Pre-condition: exists an array
+// Post-condition: an array whose value at index i is val
+//========================================================
+template <class T>
+void MinQueue<T>::set( int i, T val )
+{
+    ptrHeap[i] = val;
+}
+
+//========================================================
+// allocate
+//========================================================
+template <class T>
+void MinQueue<T>::allocate( int n )
+{
+    if (array < n)
+    {
+        cout << "Array size does not reach minimum." << endl;
+        return;
     }
 }

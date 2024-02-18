@@ -33,7 +33,9 @@ class MinQueue{
         void        build_heap          ( void );
         void        sort                ( const T* A );
         string      to_string           ( void );
-        void        insert              ( const T x ):
+        void        insert              ( const T x );
+        void        set                 ( int i, T val );
+        void        allocate            ( int n );
 };
 
 #include "minqueue.cpp"
