@@ -26,7 +26,6 @@ class MinQueue{
                     MinQueue            ( void );
                     MinQueue            ( T* A, int n );
                     ~MinQueue           ( void );
-        void        insert              ( const T x ):
         T           min                 ( void );
         T           extract_min         ( void );
         void        decrease_key        ( int i, T k );
@@ -34,7 +33,7 @@ class MinQueue{
         void        build_heap          ( void );
         void        sort                ( const T* A );
         string      to_string           ( void );
-
+        void        insert              ( const T x ):
 };
 
 #include "minqueue.cpp"

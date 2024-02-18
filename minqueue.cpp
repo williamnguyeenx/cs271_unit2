@@ -55,7 +55,7 @@ MinQueue<T>::MinQueue( T* A, int n )
 //========================================================
 
 template <class T>
-MinQueue<T>::~Minqueue( void )
+MinQueue<T>::~MinQueue( void )
 {
     delete[] ptrHeap;
 }
@@ -186,21 +186,6 @@ void MinQueue<T>::sort( const T* A )
         ptrHeap[i] = temp;
         A[array-i-1] = ptrHeap[i];
         heap--;
-        min_heapify(0)
+        min_heapify(0);
     }
-}
-
-template <typename T>
-string MinQueue<T>::to_string(){
-
-    stringstream ss;
-    string s = "";
-    
-    for(int i = 0; i < size; i++){ // converts the element into a string form
-        ss.str("");
-        ss << heap[i] << " "; 
-        s = s + ss.str();
-    }
-   
-    return s.substr(0,s.size()-1);
 }
