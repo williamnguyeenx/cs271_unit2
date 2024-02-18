@@ -1,5 +1,6 @@
 #include <iostream>
 #include "usecase.cpp"
+#include "minqueue.h"
 
 using namespace std;
 

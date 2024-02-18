@@ -12,24 +12,29 @@ using namespace std;
 #define MINQUEUE_H
 
 template <class T>
-class Minqueue{
+class MinQueue{
     private:
+        Node *ptrHeap;
+        int array;
+        int heap;
+
         parent( int i );
         left( int i );
         right( int i );
 
     public:
-                    Minqueue            ( void );
-                    Minqueue            ( T* A, int n );
-                    ~Minqueue           ( void );
+                    MinQueue            ( void );
+                    MinQueue            ( T* A, int n );
+                    ~MinQueue           ( void );
         void        insert              ( const T x ):
         T           min                 ( void );
         T           extract_min         ( void );
         void        decrease_key        ( int i, T k );
         void        min_heapify         ( int i );
-        void        build_min_heap      ( void );
-        void        heapsort            ( const T& A );
+        void        build_heap          ( void );
+        void        sort                ( const T* A );
         string      to_string           ( void );
+
 };
 
 #include "minqueue.cpp"
