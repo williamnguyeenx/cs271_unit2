@@ -14,28 +14,42 @@ using namespace std;
 template <class T>
 class MinQueue{
     private:
-        Node *ptrHeap;
+        T *ptrHeap; 
         int array;
         int heap;
 
-        parent( int i );
+        parent( int i ); // not defined
         left( int i );
         right( int i );
 
     public:
-                    MinQueue            ( void );
-                    MinQueue            ( T* A, int n );
-                    ~MinQueue           ( void );
-        T           min                 ( void );
-        T           extract_min         ( void );
-        void        decrease_key        ( int i, T k );
-        void        min_heapify         ( int i );
-        void        build_heap          ( void );
-        void        sort                ( const T* A );
-        string      to_string           ( void );
-        void        insert              ( const T x );
-        void        set                 ( int i, T val );
-        void        allocate            ( int n );
+                            MinQueue            (void);
+                            MinQueue            (const MinQueue<T> &A, int n);
+        MinQueue<T>         operator=           (const MinQueue<T> &A, int n);
+                            ~MinQueue           (void);
+        MinQueue<T>         min                 (void);
+        MinQueue<T>         extract_min         (void);
+        void                decrease_key        (int i, T k);
+        void                min_heapify         (int i);
+        void                build_heap          (void);
+        void                sort                (const T* A);
+        string              to_string           (void);
+        void                insert              (const T x);
+        void                set                 (int i, T val);
+        void                allocate            (int n);
+
+
+friend ostream & operator << ( ostream &os, const MinQueue<T> A )
+    {
+        os << "[ ";
+        for ( int i = 0; i < A.heap; i++ )
+            os << A.ptrHeap[i] << ", ";
+        if ( A.heap != 0 )
+            os << A.ptrHeap[A.heap-1] << " ]";
+        else
+            os << " ]";
+        return os;
+    }
 };
 
 #include "minqueue.cpp"

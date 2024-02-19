@@ -35,13 +35,13 @@ MinQueue<T>::MinQueue( void )
 //========================================================
 
 template <class T>
-MinQueue<T>::MinQueue( T* A, int n )
+MinQueue<T>::MinQueue( const MinQueue<T> &A, int n )
 {
     array = n;
     heap = array;
     ptrHeap = new T[heap];
 
-    for(i = 0; i < heap; i++) // i runs till heap-1
+    for(int i = 0; i < n; i++) // i runs till heap-1
     {
         ptrHeap[i] = A[i];
     }
@@ -49,6 +49,9 @@ MinQueue<T>::MinQueue( T* A, int n )
     build_heap();
 }
 
+//========================================================
+// assignment operator
+//========================================================
 
 //========================================================
 // ~MinQueue
@@ -83,7 +86,7 @@ void MinQueue<T>::insert(const T x)
 //========================================================
 
 template <class T>
-T MinQueue<T>::min( void )
+MinQueue<T> MinQueue<T>::min( void )
 {
     if (array < 1 || heap < 1)
     {
@@ -97,7 +100,7 @@ T MinQueue<T>::min( void )
 //========================================================
 
 template <class T>
-T MinQueue<T>::extract_min()
+MinQueue<T> MinQueue<T>::extract_min()
 {
     T min = min();
     ptrHeap[0] = ptrHeap[heap-1];
@@ -229,7 +232,7 @@ void MinQueue<T>::set( int i, T val )
 // allocate
 //========================================================
 template <class T>
-void MinQueue<T>::allocate( int n )
+void MinQueue<T>::allocate( int n ) //copy elements to new array?
 {
     if (array < n)
     {
