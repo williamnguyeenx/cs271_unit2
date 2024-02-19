@@ -41,12 +41,12 @@ MinQueue<T>::MinQueue( T* A, int n )
     heap = array;
     ptrHeap = new T[heap];
 
-    for(i = 0; i <= heap; i++)
+    for(i = 0; i < heap; i++) // i runs till heap-1
     {
-        ptrHeap[i] = A[i]
+        ptrHeap[i] = A[i];
     }
 
-    build_min_heap()
+    build_heap();
 }
 
 
@@ -73,7 +73,7 @@ void MinQueue<T>::insert(const T x)
     }
     heap++;
     T k = x;
-    x = -numeric_limits<T>::infinity();
+    x = -numeric_limits<T>::infinity(); //x is const cant modify
     ptrHeap[heap-1] =  x;
     decrease_key(heap-1, k);
 }
@@ -89,7 +89,7 @@ T MinQueue<T>::min( void )
     {
         cout << "Heap is empty" << endl;
     }
-    return ptrHeap[0]
+    return ptrHeap[0];
 }
 
 //========================================================
@@ -121,7 +121,7 @@ void MinQueue<T>::decrease_key( int i, T k )
 
     while (i > 1 && ptrHeap[parent(i)] > ptrHeap[i])
     {
-        T* temp = ptrHeap[parent(i)];
+        T* temp = ptrHeap[parent(i)]; //T bc val is now stored in ptr
         ptrHeap[parent(i)] = ptrHeap[i];
         ptrHeap[i] = temp;
         i = parent(i);
@@ -149,7 +149,7 @@ void MinQueue<T>::min_heapify( int i )
     }
     if (smallest != i)
     {
-        T* temp = ptrHeap[i];
+        T* temp = ptrHeap[i]; //store val in ptr
         ptrHeap[i] = ptrHeap[smallest];
         ptrHeap[smallest] = temp;
         min_heapify(smallest);
@@ -164,7 +164,7 @@ template <class T>
 void MinQueue<T>::build_heap( void )
 {
     heap = array;
-    for (int i = n/2; i >= 1; i--)
+    for (int i = n/2; i >= 1; i--) //replace n with array bc n undefined
     {
         min_heapify(i);
     }
@@ -181,10 +181,10 @@ void MinQueue<T>::sort( const T* A )
     build_heap();
     for (int i = array; i >= 2; i--)
     {
-        T* temp = ptrHeap[0];
+        T* temp = ptrHeap[0]; //store val in ptr
         ptrHeap[0] = ptrHeap[i];
         ptrHeap[i] = temp;
-        A[array-i-1] = ptrHeap[i];
+        A[array-i-1] = ptrHeap[i]; // A is const, cant modify
         heap--;
         min_heapify(0);
     }
@@ -203,7 +203,7 @@ template <class T>
 string MinQueue<T>::to_string( void )
 {
     stringstream result;
-    for(i = 0; i <= heap; i++)
+    for(int i = 0; i <= heap; i++)
     {
         result << ptrHeap[i] << " ";
     }
