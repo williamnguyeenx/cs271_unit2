@@ -18,17 +18,28 @@ class MinQueue{
         int array;
         int heap;
 
-        parent( int i ); // not defined
-        left( int i );
-        right( int i );
+        int    parent  ( int i )
+        {
+            return floor(i/2);
+        } 
+
+        int    left    ( int i )
+        {
+            return 2*i;
+        }
+
+        int    right   ( int i )
+        {
+            return 2*i+1;
+        }
 
     public:
                             MinQueue            (void);
                             MinQueue            (const MinQueue<T> &A, int n);
         MinQueue<T>         operator=           (const MinQueue<T> &A, int n);
                             ~MinQueue           (void);
-        MinQueue<T>         min                 (void);
-        MinQueue<T>         extract_min         (void);
+        T&                  min                 (void);
+        T&                  extract_min         (void);
         void                decrease_key        (int i, T k);
         void                min_heapify         (int i);
         void                build_heap          (void);
