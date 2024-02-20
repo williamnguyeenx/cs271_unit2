@@ -130,7 +130,7 @@ void MinQueue<T>::insert(const T x)
 //========================================================
 
 template <class T>
-T& MinQueue<T>::min( void )
+T& MinQueue<T>::min(const MinQueue<T> &A)
 {
     if (array < 1 || heap < 1)
     {
@@ -152,7 +152,7 @@ T& MinQueue<T>::min( void )
 //========================================================
 
 template <class T>
-T& MinQueue<T>::extract_min()
+T& MinQueue<T>::extract_min(const MinQueue<T> &A)
 {
     T min = min();
     ptrHeap[0] = ptrHeap[heap-1];
