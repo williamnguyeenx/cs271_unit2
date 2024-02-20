@@ -24,9 +24,9 @@ using namespace std;
 template <class T>
 MinQueue<T>::MinQueue( void )
 {
-    array = 0;
-    heap = array;
-    ptrHeap = new T[heap];
+    array = 1;
+    heap = 0;
+    ptrHeap = new T[array];
 }
 
 //========================================================
@@ -48,6 +48,23 @@ MinQueue<T>::MinQueue( const MinQueue<T> &A, int n )
 
     build_heap();
 }
+
+// template <class T>
+// MinQueue<T>::MinQueue(const MinQueue<T>& A, int n) {
+//     array = n; 
+//     if (A.heap < n) {
+//         heap = A.heap;
+//     } else {
+//         heap = n;
+//     }
+//     ptrHeap = new T[array];
+
+//     for (int i = 0; i < heap; i++) 
+//     { 
+//         ptrHeap[i] = A.ptrHeap[i]; 
+//     }
+//     build_heap(); 
+
 
 //========================================================
 // assignment operator
@@ -121,10 +138,10 @@ void MinQueue<T>::decrease_key( int i, T k )
         cout << "Cannot decrease to k for k is bigger than the target element" << endl;
         return;
     }
-
+    ptrHeap[i] = k;
     while (i > 1 && ptrHeap[parent(i)] > ptrHeap[i])
     {
-        T* temp = ptrHeap[parent(i)]; //T bc val is now stored in ptr
+        T temp = ptrHeap[parent(i)]; 
         ptrHeap[parent(i)] = ptrHeap[i];
         ptrHeap[i] = temp;
         i = parent(i);
@@ -167,7 +184,7 @@ template <class T>
 void MinQueue<T>::build_heap( void )
 {
     heap = array;
-    for (int i = n/2; i >= 1; i--) //replace n with array bc n undefined
+    for (int i = array/2; i >= 1; i--) 
     {
         min_heapify(i);
     }
