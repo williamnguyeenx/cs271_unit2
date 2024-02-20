@@ -20,6 +20,11 @@ using namespace std;
 //========================================================
 // MinQueue
 // default constructor
+// Create an empty MinQueue
+// Parameter: None
+// Return value: None
+// Pre-condition: None
+// Post-condition: MinQueue object created
 //========================================================
 template <class T>
 MinQueue<T>::MinQueue( void )
@@ -32,6 +37,12 @@ MinQueue<T>::MinQueue( void )
 //========================================================
 // MinQueue
 // copy constructor
+// Create a MinQueue and copy elements from an existing MinQueue
+// Parameter: const MinQueue<T> &A - Object's elements to be copied
+//            int n - size of array to be set for the newly create MinQueue object
+// Return value: None
+// Pre-condition: Exists a MinQueue object
+// Post-condition: Created a copy of the existing MinQueue object
 //========================================================
 
 template <class T>
@@ -72,6 +83,11 @@ MinQueue<T>::MinQueue( const MinQueue<T> &A, int n )
 
 //========================================================
 // ~MinQueue
+// Destructor
+// Parameter: None
+// Return value: None
+// Pre-condition: Exist a MinQueue object
+// Post-condition: MinQueue object deallocated
 //========================================================
 
 template <class T>
@@ -82,6 +98,11 @@ MinQueue<T>::~MinQueue( void )
 
 //========================================================
 // insert
+// Insert an element into MinQueue
+// Parameter: T x - element to be inserted
+// Return value: None
+// Pre-condition: MinQueue object have spare capacity for new element(s)
+// Post-condition: Updated MinQueue object with the new element
 //========================================================
 
 template <class T>
@@ -100,6 +121,12 @@ void MinQueue<T>::insert(const T x)
 
 //========================================================
 // min
+// Get the smallest element of MinQueue
+// Parameter: None
+// Return value: ptrHeap[0] - the root element/smallest element 
+// in MinQueue object
+// Pre-condition: Exist a MinQueue object
+// Post-condition: Return the smallest element in the MinQueue
 //========================================================
 
 template <class T>
@@ -114,6 +141,14 @@ T& MinQueue<T>::min( void )
 
 //========================================================
 // extract_min
+// Get and remove the smallest element of MinQueue
+// Parameter: None
+// Return value: min - the root element/smallest element 
+// in MinQueue object
+// Pre-condition: Exist a MinQueue object
+// Post-condition: Return the smallest element in the MinQueue 
+// and MinQueue is updated to no longer have that 
+// former smallest element
 //========================================================
 
 template <class T>
@@ -128,6 +163,13 @@ T& MinQueue<T>::extract_min()
 
 //========================================================
 // decrease_key
+// Decrease the targeted element's key to a new key
+// Parameter: int i - position of the element in MinQueue
+//            T k - new key value
+// Return value: None
+// Pre-condition: Exists non-empty MinQueue object that is
+// at least to index i
+// Post-condition: MinQueue object with updated targeted element
 //========================================================
 
 template <class T>
@@ -150,6 +192,11 @@ void MinQueue<T>::decrease_key( int i, T k )
 
 //========================================================
 // min_heapify
+// Satisfy and maintain min-heap property in MinQueue object
+// Parameter: int i - targeted element
+// Return value: None
+// Pre-condition: Children of element at index i must be min-heap
+// Post-condition: MinQueue satisfy the min-heap property
 //========================================================
 
 template <class T>
@@ -178,6 +225,11 @@ void MinQueue<T>::min_heapify( int i )
 
 //========================================================
 // build_min_heap
+// Produce a min-heap for MinQueue object
+// Parameter: None
+// Return value: None
+// Pre-condition: Exist non-empty MinQueue object
+// Post-condition: Created a min-heap MinQueue object
 //========================================================
 
 template <class T>
