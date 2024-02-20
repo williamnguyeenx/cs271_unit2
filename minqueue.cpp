@@ -169,7 +169,7 @@ void MinQueue<T>::min_heapify( int i )
     }
     if (smallest != i)
     {
-        T* temp = ptrHeap[i]; //store val in ptr
+        T temp = ptrHeap[i]; 
         ptrHeap[i] = ptrHeap[smallest];
         ptrHeap[smallest] = temp;
         min_heapify(smallest);
@@ -209,6 +209,20 @@ void MinQueue<T>::sort( const T* A )
         min_heapify(0);
     }
 }
+
+// template <class T>
+// void MinQueue<T>::sort(T* A)  //not constant 
+// { 
+//     build_heap(); 
+//     for (int i = heap - 1; i >= 1; i--) {
+//         T temp = ptrHeap[0];
+//         ptrHeap[0] = ptrHeap[i];
+//         ptrHeap[i] = temp;
+//         A[heap - 1 - i] = temp;  //correct indexing
+//         heap--; 
+//         min_heapify(0); 
+//     }
+// }
 
 //========================================================
 // to_string
