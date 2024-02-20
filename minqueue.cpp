@@ -147,8 +147,7 @@ T& MinQueue<T>::min(const MinQueue<T> &A)
 // in MinQueue object
 // Pre-condition: Exist a MinQueue object
 // Post-condition: Return the smallest element in the MinQueue 
-// and MinQueue is updated to no longer have that 
-// former smallest element
+// and extract it from heap
 //========================================================
 
 template <class T>
