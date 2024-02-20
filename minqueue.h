@@ -36,8 +36,8 @@ class MinQueue{
     public:
                             MinQueue            (void);
                             MinQueue            (const MinQueue<T> &A, int n);
-        MinQueue<T>         operator=           (const MinQueue<T> &A, int n);
                             ~MinQueue           (void);
+        void                insert              (const T x)
         T&                  min                 (void);
         T&                  extract_min         (void);
         void                decrease_key        (int i, T k);
@@ -45,10 +45,9 @@ class MinQueue{
         void                build_heap          (void);
         void                sort                (const T* A);
         string              to_string           (void);
-        void                insert              (const T x);
         void                set                 (int i, T val);
         void                allocate            (int n);
-
+        MinQueue<T>         operator=           (const MinQueue<T> &A, int n);
 
 friend ostream & operator << ( ostream &os, const MinQueue<T> A )
     {
