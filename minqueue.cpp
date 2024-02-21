@@ -29,7 +29,7 @@ using namespace std;
 template <class T>
 MinQueue<T>::MinQueue( void )
 {
-    array = 100; // Initial capacity, adjust as needed
+    array = 1; // Initial capacity, adjust as needed
     heap = 0; // Initially, the heap is empty
     ptrHeap = new T[array]; // Allocate memory for the heap with initial capacity
 }
@@ -91,25 +91,25 @@ MinQueue<T>::~MinQueue( void )
 // Post-condition: Created a copy of the existing MinQueue object
 //========================================================
 
-template <class T>
-MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
-{
-    if (this != &A) // Prevent self-assignment
-        delete [] ptrHeap; // Deallocate original heap
+// template <class T>
+// MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
+// {
+//     if (this != &A) // Prevent self-assignment
+//         delete [] ptrHeap; // Deallocate original heap
 
-    array = A.array; // Set the capacity to A's capacity
-    heap = A.heap; // Set the heap size to A's heap size
-    ptrHeap = new T[array]; // Allocate memory for the new heap
+//     array = A.array; // Set the capacity to A's capacity
+//     heap = A.heap; // Set the heap size to A's heap size
+//     ptrHeap = new T[array]; // Allocate memory for the new heap
 
-    for(int i = 0; i < heap; i++) 
-    {
-        ptrHeap[i] = A[i]; // Copy each element from A to ptrHeap
-    }
+//     for(int i = 0; i < heap; i++) 
+//     {
+//         ptrHeap[i] = A[i]; // Copy each element from A to ptrHeap
+//     }
 
-    build_heap(); // Transform the array into a min heap
+//     build_heap(); // Transform the array into a min heap
 
-    return *this; // Return address of copied heap
-}
+//     return *this; // Return address of copied heap
+// }
 
 //========================================================
 // insert
@@ -128,12 +128,12 @@ void MinQueue<T>::insert(const T& x)
 
     heap++; // Increase heap size
 
-    ptrheap[heap-1] = x; // Place x at the end of the heap
+    ptrHeap[heap-1] = x; // Place x at the end of the heap
     int i = heap - 1; // Trace heap from bottom
 
     while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) 
     {
-        swap(ptrheap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than those behind
+        swap(ptrHeap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than those behind
         i = parent(i); // Check if new position still satisfies min-heap property
     }  
 }
@@ -148,12 +148,12 @@ void MinQueue<T>::insert(const T& x)
 //========================================================
 
 template <class T>
-T& MinQueue<T>::min(void)
+T MinQueue<T>::min(void)
 {
     if (heap == 0)
     {
         cout << "Heap is empty" << endl; // Not return if heap is empty
-        return;
+        return T();
     }
     return ptrHeap[0]; // Return the first element in heap because it's the smallest
 }
@@ -174,7 +174,7 @@ T MinQueue<T>::extract_min(void)
     if (heap == 0)
     {
         cout << "Heap is empty" << endl; // Not return if heap is empty
-        return;
+        return T();
     }
 
     T minElement = ptrHeap[0]; // Min element is the first element
@@ -269,8 +269,8 @@ void MinQueue<T>::min_heapify(int i)
 template <class T>
 void MinQueue<T>::build_heap( void )
 {
-    heap = array;       //Set heap equals to array 
-    for (int i = array/2; i >= 1; i--)  //Loop from the index at the middle to index 1
+    heap = array;
+    for (int i = (array-1)/2; i >= 0; i--) 
     {
         min_heapify(i);     //Run min_heapify
     }
@@ -289,7 +289,7 @@ void MinQueue<T>::build_heap( void )
 template <class T>
 void MinQueue<T>::sort(T* A)
 {
-    build_heap(); 
+    build_heap();
     for (int i = array; i >= 2; i--)
     {
         T temp = ptrHeap[0]; 
@@ -319,9 +319,12 @@ template <class T>
 string MinQueue<T>::to_string( void ) const
 {
     stringstream result;
-    for(int i = 0; i <= heap; i++)
+    for(int i = 0; i <= heap-1; i++)
     {
-        result << ptrHeap[i] << " ";
+        if (i != heap-1)
+            result << ptrHeap[i] << " ";
+        else
+            result << ptrHeap[i];
     }
 
     return result.str();

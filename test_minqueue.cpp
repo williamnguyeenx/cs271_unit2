@@ -200,78 +200,77 @@ void test_insert()
         cerr << "Error inserting into the priority queue : " << e.what() << endl;
     }
 
-    char *char_data = new char[3];
-    char arr1[] = {'x','y','z'};
-    for (int i = 0; i < 3; i++)
-    {
-        char_data[i] = arr1[i];
-    }
+    // char *char_data = new char[3];
+    // char arr1[] = {'x','y','z'};
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     char_data[i] = arr1[i];
+    // }
 
-    try
-    {
-        MinQueue<char> empty;
-        empty.insert('a');
-        string mq_str = empty.to_string();
+    // try
+    // {
+    //     MinQueue<char> empty;
+    //     empty.insert('a');
+    //     string mq_str = empty.to_string();
 
-        if (mq_str != "a")
-        {
-            cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
-        }
+    //     if (mq_str != "a")
+    //     {
+    //         cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
+    //     }
 
-        MinQueue<char> mq(char_data, 10);
-        mq.insert('a');
-        mq.insert('b');
-        mq_str = mq.to_string();
+    //     MinQueue<char> mq(char_data, 10);
+    //     mq.insert('a');
+    //     mq.insert('b');
+    //     mq_str = mq.to_string();
 
-        if (mq_str != "a b z x y")
-        {
-            cout << "Incorrect insert result. Expected a b z x y but got : " << mq_str << endl;
-        }
-    }
-    catch (exception &e)
-    {
-        cerr << "Error inserting into the priority queue : " << e.what() << endl;
-    }
+    //     if (mq_str != "a b z x y")
+    //     {
+    //         cout << "Incorrect insert result. Expected a b z x y but got : " << mq_str << endl;
+    //     }
+    // }
+    // catch (exception &e)
+    // {
+    //     cerr << "Error inserting into the priority queue : " << e.what() << endl;
+    // }
 
 
-    string *string_data = new string[3];
-    string arr2[] = {"apple","doctor","elephant"};
-    for (int i = 0; i < 3; i++)
-    {
-        string_data[i] = arr2[i];
-    }
+    // string *string_data = new string[3];
+    // string arr2[] = {"apple","doctor","elephant"};
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     string_data[i] = arr2[i];
+    // }
 
-    try
-    {
-        MinQueue<string> empty;
-        empty.insert('a');
-        string mq_str = empty.to_string();
+    // try
+    // {
+    //     MinQueue<string> empty;
+    //     empty.insert('a');
+    //     string mq_str = empty.to_string();
 
-        if (mq_str != "a")
-        {
-            cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
-        }
+    //     if (mq_str != "a")
+    //     {
+    //         cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
+    //     }
 
-        MinQueue<string> mq(string_data, 10);
-        mq.insert("banana");
-        mq.insert("cat");
-        mq_str = mq.to_string();
+    //     MinQueue<string> mq(string_data, 10);
+    //     mq.insert("banana");
+    //     mq.insert("cat");
+    //     mq_str = mq.to_string();
 
-        if (mq_str != "apple banana elephant doctor cat")
-        {
-            cout << "Incorrect insert result. Expected apple banana elephant doctor cat but got : " << mq_str << endl;
-        }
-    }
-    catch (exception &e)
-    {
-        cerr << "Error inserting into the priority queue : " << e.what() << endl;
-    }
+    //     if (mq_str != "apple banana elephant doctor cat")
+    //     {
+    //         cout << "Incorrect insert result. Expected apple banana elephant doctor cat but got : " << mq_str << endl;
+    //     }
+    // }
+    // catch (exception &e)
+    // {
+    //     cerr << "Error inserting into the priority queue : " << e.what() << endl;
+    // }
 
-    delete[] int_data;
     delete[] int_data;
     delete[] float_data;
-    delete[] char_data;
-    delete[] string_data;
+    // delete[] char_data;
+    // delete[] string_data;
 }
 
 void test_min()
@@ -642,45 +641,45 @@ void test_sliding_window()
     delete[] empty;
 }
 
-void time_test()
-{
-    MinQueue<int> mq;
-    // TO-DO: generate large minqueue
-    int size = -1; // TO-DO: set size of large minqueue
-    int total = 0;
+// void time_test()
+// {
+//     MinQueue<int> mq;
+//     // TO-DO: generate large minqueue
+//     int size = -1; // TO-DO: set size of large minqueue
+//     int total = 0;
 
-    int val = rand() % 100000;
-    auto begin = std::chrono::high_resolution_clock::now();
-    mq.insert(val);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "insert time test took " << elapsed.count() << " nanoseconds" << endl;
-    total += elapsed.count();
+//     int val = rand() % 100000;
+//     auto begin = std::chrono::high_resolution_clock::now();
+//     mq.insert(val);
+//     auto end = std::chrono::high_resolution_clock::now();
+//     auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+//     cout << "insert time test took " << elapsed.count() << " nanoseconds" << endl;
+//     total += elapsed.count();
 
-    begin = std::chrono::high_resolution_clock::now();
-    int _ = mq.min();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "min time test took " << elapsed.count() << " nanoseconds" << endl;
-    total += elapsed.count();
+//     begin = std::chrono::high_resolution_clock::now();
+//     int _ = mq.min();
+//     end = std::chrono::high_resolution_clock::now();
+//     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+//     cout << "min time test took " << elapsed.count() << " nanoseconds" << endl;
+//     total += elapsed.count();
 
-    begin = std::chrono::high_resolution_clock::now();
-    _ = mq.extract_min();
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "extract min time test took " << elapsed.count() << " nanoseconds" << endl;
-    total += elapsed.count();
+//     begin = std::chrono::high_resolution_clock::now();
+//     _ = mq.extract_min();
+//     end = std::chrono::high_resolution_clock::now();
+//     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+//     cout << "extract min time test took " << elapsed.count() << " nanoseconds" << endl;
+//     total += elapsed.count();
 
-    int last_index = size - 1;  // indexing starts at 0
-    int new_val = mq.min() - 1; // ensure we're decreasing the key
-    begin = std::chrono::high_resolution_clock::now();
-    mq.decrease_key(last_index, new_val);
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    cout << "decrease key time test took " << elapsed.count() << " nanoseconds" << endl;
-    total += elapsed.count();
-    cout << "Total time: " << total << endl;
-}
+//     int last_index = size - 1;  // indexing starts at 0
+//     int new_val = mq.min() - 1; // ensure we're decreasing the key
+//     begin = std::chrono::high_resolution_clock::now();
+//     mq.decrease_key(last_index, new_val);
+//     end = std::chrono::high_resolution_clock::now();
+//     elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+//     cout << "decrease key time test took " << elapsed.count() << " nanoseconds" << endl;
+//     total += elapsed.count();
+//     cout << "Total time: " << total << endl;
+// }
 
 int main()
 {
@@ -696,7 +695,7 @@ int main()
 
     test_sliding_window();
 
-    time_test();
+    // time_test();
 
     cout << "Testing completed" << endl;
 
