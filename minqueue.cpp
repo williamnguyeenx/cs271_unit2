@@ -44,6 +44,7 @@ MinQueue<T>::MinQueue( void )
 // Pre-condition: Exists a MinQueue object
 // Post-condition: Created a copy of the existing MinQueue object
 //========================================================
+
 template <class T>
 MinQueue<T>::MinQueue( const MinQueue<T> &A, int n )
 {
@@ -98,7 +99,14 @@ MinQueue<T>::~MinQueue( void )
 
 //========================================================
 // assignment operator
+// Create a new heap from the current heap by copying current
+// values and deleting the current heap
+// Parameter: reference call to MinQueue A - object to be copied
+// Return value: a MinQueue object
+// Pre-condition: Exist a MinQueue object
+// Post-condition: Created a copy of the existing MinQueue object
 //========================================================
+
 template <class T>
 MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
 {
@@ -133,6 +141,7 @@ MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
 // Pre-condition: MinQueue object have spare capacity for new element(s)
 // Post-condition: Updated MinQueue object with the new element inserted
 //========================================================
+
 template <class T>
 void MinQueue<T>::insert(const T& x)
 {
@@ -239,34 +248,34 @@ void MinQueue<T>::decrease_key(int i, T k)
 
 //========================================================
 // min_heapify
-// Satisfy and maintain min-heap property in MinQueue object
+// Maintain min-heap property of MinQueue object
 // Parameter: int i - targeted element
 // Return value: None
 // Pre-condition: Children of element at index i must be min-heap
-// Post-condition: MinQueue satisfy the min-heap property
+// Post-condition: MinQueue satisfies the min-heap property
 //========================================================
 
 template <class T>
 void MinQueue<T>::min_heapify(int i)
 {
-    int l = left(i);
-    int r = right(i);
-    int smallest = i;
+    int l = left(i); // Get left child index
+    int r = right(i); // Get right child index
+    int smallest = i; // Variable to store smallest value when comparing
 
-    if (l <= heap && ptrHeap[l] < ptrHeap[i])
-    {
+    if (l < heap && ptrHeap[l] < ptrHeap[i]) // Value at l is the smallest if it's smaller than value at i 
         smallest = l;
-    }
-    if (r <= heap && ptrHeap[r] < ptrHeap[smallest])
-    {
+
+    if (r < heap && ptrHeap[r] < ptrHeap[smallest]) // Value at r is the smallest if it's smaller than the current smallest
         smallest = r;
-    }
+    
+    // If the smallest is not the current node, swap it with 
+    // the smallest and heapify the subtree
     if (smallest != i)
     {
         T temp = ptrHeap[i]; 
         ptrHeap[i] = ptrHeap[smallest];
         ptrHeap[smallest] = temp;
-        min_heapify(smallest);
+        min_heapify(smallest); // Heapify the subtree from smallest 
     }
 }
 
