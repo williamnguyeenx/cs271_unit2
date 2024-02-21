@@ -106,7 +106,7 @@ MinQueue<T>::~MinQueue( void )
 //========================================================
 
 template <class T>
-void MinQueue<T>::insert(const T x)
+void MinQueue<T>::insert(T x)
 {
     if (heap >= array)
     {
@@ -250,7 +250,7 @@ void MinQueue<T>::build_heap( void )
 //========================================================
 
 template <class T>
-void MinQueue<T>::sort( const T* A )
+void MinQueue<T>::sort( T* A )
 {
     build_heap();
     for (int i = array; i >= 2; i--)

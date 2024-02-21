@@ -25,12 +25,12 @@ class MinQueue{
 
         int    left    ( int i )
         {
-            return 2*i;
+            return 2*i+1;
         }
 
         int    right   ( int i )
         {
-            return 2*i+1;
+            return 2*i+2;
         }
 
     public:
@@ -38,13 +38,13 @@ class MinQueue{
                             MinQueue            (const MinQueue<T> &A, int n);
         MinQueue<T>         operator=           (const MinQueue<T> &A, int n);
                             ~MinQueue           (void);
-        void                insert              (const T x)
+        void                insert              (T x)
         T&                  min                 (const MinQueue<T> &A);
         T&                  extract_min         (const MinQueue<T> &A);
         void                decrease_key        (int i, T k);
         void                min_heapify         (int i);
         void                build_heap          (void);
-        void                sort                (const T* A);
+        void                sort                (T* A);
         string              to_string           (void);
         void                set                 (int i, T val);
         void                allocate            (int n);
