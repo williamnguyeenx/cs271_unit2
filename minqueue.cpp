@@ -44,25 +44,24 @@ MinQueue<T>::MinQueue( void )
 // Pre-condition: Exists a MinQueue object
 // Post-condition: Created a copy of the existing MinQueue object
 //========================================================
-
 template <class T>
 MinQueue<T>::MinQueue( const MinQueue<T> &A, int n )
 {
-    if (n < 0) 
+    if (n < 0) // Ensure n is not negative
     {
         cout << "Array size cannot be negative" << endl;
     }
 
-    array = n;
-    heap = n;
-    ptrHeap = new T[array];
+    array = n; // Set the capacity to n
+    heap = n; // The heap size is also n since we're copying all elements
+    ptrHeap = new T[array]; // Allocate memory for the heap
 
-    for(int i = 0; i < n; i++) // i runs till heap-1
+    for(int i = 0; i < n; i++) 
     {
-        ptrHeap[i] = A[i];
+        ptrHeap[i] = A[i]; // Copy each element from A to ptrHeap
     }
 
-    build_heap();
+    build_heap(); // Transform the array into a min heap
 }
 
 // template <class T>
@@ -83,10 +82,6 @@ MinQueue<T>::MinQueue( const MinQueue<T> &A, int n )
 
 
 //========================================================
-// assignment operator
-//========================================================
-
-//========================================================
 // ~MinQueue
 // Destructor
 // Parameter: None
@@ -99,6 +94,34 @@ template <class T>
 MinQueue<T>::~MinQueue( void )
 {
     delete[] ptrHeap;
+}
+
+//========================================================
+// assignment operator
+//========================================================
+template <class T>
+MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
+{
+    if (this != &A) // Prevent self-assignment
+        delete [] ptrHeap; // Deallocate original heap
+
+    if (n < 0) // Ensure n is not negative
+    {
+        cout << "Array size cannot be negative" << endl;
+    }
+
+    array = A.array; // Set the capacity to A's capacity
+    heap = A.heap; // Set the heap size to A's heap size
+    ptrHeap = new T[array]; // Allocate memory for the new heap
+
+    for(int i = 0; i < heap; i++) 
+    {
+        ptrHeap[i] = A[i]; // Copy each element from A to ptrHeap
+    }
+
+    build_heap(); // Transform the array into a min heap
+
+    return *this; // Return address of copied heap
 }
 
 //========================================================

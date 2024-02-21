@@ -36,8 +36,8 @@ class MinQueue{
     public:
                             MinQueue            (void);
                             MinQueue            (const MinQueue<T> &A, int n);
-        MinQueue<T>         operator=           (const MinQueue<T> &A, int n);
                             ~MinQueue           (void);
+        MinQueue<T>         operator=           (const MinQueue<T> &A);
         void                insert              (const T& x);
         T&                  min                 (void);
         T&                  extract_min         (void);
