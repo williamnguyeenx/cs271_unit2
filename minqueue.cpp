@@ -129,9 +129,8 @@ void MinQueue<T>::insert(const T& x)
     if (heap == array)                                          // If heap size reaches capacity -> increase size to insert
         allocate(array * 2);                                    // Create a new heap with bigger capacity 
 
+    ptrHeap[heap] = x;                                        // Place x at the end of the heap
     heap++;                                                     // Increase heap size
-
-    ptrHeap[heap-1] = x;                                        // Place x at the end of the heap
     int i = heap - 1;                                           // Trace heap from bottom
 
     decrease_key(i, x);
@@ -151,7 +150,6 @@ T MinQueue<T>::min(void)
 {
     if (heap == 0)
     {
-        cout << "Heap is empty" << endl;                        // Not return if heap is empty
         return T();
     }
     return ptrHeap[0];                                          // Return the first element in heap because it's the smallest
@@ -172,7 +170,6 @@ T MinQueue<T>::extract_min(void)
 {
     if (heap == 0)
     {
-        cout << "Heap is empty" << endl;                        // Not return if heap is empty
         return T();
     }
 
@@ -202,13 +199,11 @@ void MinQueue<T>::decrease_key(int i, T k)
 {
     if (i < 0 || i >= heap)                                     // Check if i is out of bound
     {
-        cout << "Index out of range" << endl;
         return;
     }
 
     if (ptrHeap[i] < k )                                        // Check if new key is bigger than current key
     {
-        cout << "Current key is smaller than new key" << endl;
         return;
     }
 
@@ -246,9 +241,7 @@ void MinQueue<T>::min_heapify(int i)
     
     if (smallest != i)                                          // If the smallest is not the current node, swap it with the smallest and heapify the subtree
     {
-        T temp = ptrHeap[i]; 
-        ptrHeap[i] = ptrHeap[smallest];
-        ptrHeap[smallest] = temp;
+        swap(ptrHeap[i], ptrHeap[smallest]);
         min_heapify(smallest);                                  // Heapify the subtree from smallest 
     }
 }
