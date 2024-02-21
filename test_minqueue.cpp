@@ -752,10 +752,10 @@ void test_heapsort()
     try
     {
 
-        MinQueue<int> empty;
+        MinQueue<float> empty;
         empty.sort(empty_data);
 
-        MinQueue<int> heap(float_data, 10);
+        MinQueue<float> heap(float_data, 10);
         heap.sort(float_data);
 
         string sorted_str = to_string(float_data[0]);
