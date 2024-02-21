@@ -375,18 +375,19 @@ void MinQueue<T>::set( int i, const T& val )
 // Post-condition: Created a MinQueue object
 // of size at least n
 //========================================================
+
 template <class T>
 void MinQueue<T>::allocate( int n ) 
 {
-    if (n <= array)
+    if (n <= array) // Check if new size is >= current array size
         return;
 
-    T* newPtrHeap = new T[n];
+    T* newPtrHeap = new T[n]; // Allocate dynamic memory for a new heap with new size n
 
-    for (int i = 0; i < heap; i++)
+    for (int i = 0; i < heap; i++) // Copy values from current heap to new heap
         newPtrHeap[i] = ptrHeap[i];
 
-    delete[] ptrHeap;
-    ptrHeap = newPtrHeap;
-    array = n;
+    delete[] ptrHeap; // Deallocate current heap to prevent memory leak
+    ptrHeap = newPtrHeap; // Fix the pointer to point to new hap
+    array = n; // Set array size to be n
 }
