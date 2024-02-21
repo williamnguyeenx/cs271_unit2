@@ -11,24 +11,34 @@ string sliding_window(T arr[], int len, int window)
     MinQueue<T> mq;
     stringstream result;
 
-    for (int i = 0; i <= len-1; i++)
+    if (len == 0){
+        return result.str();
+    }
+    
+    for (int i = 0; i <= len-window; i++)
     {
-        if (len-i-1 < window)
+        for (int j = i; j <= i+window-1; j++)
         {
-            window = len-i-1;
-        }
-        int count = window;
-        for (int j = 0; j <= window-1; j++){
             mq.insert(arr[j]);
+        }
+
+        if (i != len-window)
+        {
             result << mq.min() << ' ';
         }
-        while (count > 0)
+        else
+        {
+            result << mq.min();
+        }
+
+        int count = window-1;
+        while (count >= 0)
         {
             mq.extract_min();
             count--;
         }
     }
-    result.str();
+    return result.str();
 }
 
 
