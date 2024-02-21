@@ -20,17 +20,17 @@ class MinQueue{
 
         int    parent  ( int i )
         {
-            return floor(i/2);
+            return floor((i-1)/2);
         } 
 
         int    left    ( int i )
         {
-            return 2*i+1;
+            return (2*i)+1;
         }
 
         int    right   ( int i )
         {
-            return 2*i+2;
+            return (2*i)+2;
         }
 
     public:

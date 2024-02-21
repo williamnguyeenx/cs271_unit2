@@ -200,77 +200,77 @@ void test_insert()
         cerr << "Error inserting into the priority queue : " << e.what() << endl;
     }
 
-    // char *char_data = new char[3];
-    // char arr1[] = {'x','y','z'};
-    // for (int i = 0; i < 3; i++)
-    // {
-    //     char_data[i] = arr1[i];
-    // }
+    char *char_data = new char[3];
+    char arr1[] = {'x','y','z'};
+    for (int i = 0; i < 3; i++)
+    {
+        char_data[i] = arr1[i];
+    }
 
-    // try
-    // {
-    //     MinQueue<char> empty;
-    //     empty.insert('a');
-    //     string mq_str = empty.to_string();
+    try
+    {
+        MinQueue<char> empty;
+        empty.insert('a');
+        string mq_str = empty.to_string();
 
-    //     if (mq_str != "a")
-    //     {
-    //         cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
-    //     }
+        if (mq_str != "a")
+        {
+            cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
+        }
 
-    //     MinQueue<char> mq(char_data, 10);
-    //     mq.insert('a');
-    //     mq.insert('b');
-    //     mq_str = mq.to_string();
+        MinQueue<char> mq(char_data, 10);
+        mq.insert('a');
+        mq.insert('b');
+        mq_str = mq.to_string();
 
-    //     if (mq_str != "a b z x y")
-    //     {
-    //         cout << "Incorrect insert result. Expected a b z x y but got : " << mq_str << endl;
-    //     }
-    // }
-    // catch (exception &e)
-    // {
-    //     cerr << "Error inserting into the priority queue : " << e.what() << endl;
-    // }
+        if (mq_str != "a b z x y")
+        {
+            cout << "Incorrect insert result. Expected a b z x y but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error inserting into the priority queue : " << e.what() << endl;
+    }
 
 
-    // string *string_data = new string[3];
-    // string arr2[] = {"apple","doctor","elephant"};
-    // for (int i = 0; i < 3; i++)
-    // {
-    //     string_data[i] = arr2[i];
-    // }
+    string *string_data = new string[3];
+    string arr2[] = {"apple","doctor","elephant"};
+    for (int i = 0; i < 3; i++)
+    {
+        string_data[i] = arr2[i];
+    }
 
-    // try
-    // {
-    //     MinQueue<string> empty;
-    //     empty.insert('a');
-    //     string mq_str = empty.to_string();
+    try
+    {
+        MinQueue<string> empty;
+        empty.insert("soup");
+        string mq_str = empty.to_string();
 
-    //     if (mq_str != "a")
-    //     {
-    //         cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
-    //     }
+        if (mq_str != "soup")
+        {
+            cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
+        }
 
-    //     MinQueue<string> mq(string_data, 10);
-    //     mq.insert("banana");
-    //     mq.insert("cat");
-    //     mq_str = mq.to_string();
+        MinQueue<string> mq(string_data, 10);
+        mq.insert("banana");
+        mq.insert("cat");
+        mq_str = mq.to_string();
 
-    //     if (mq_str != "apple banana elephant doctor cat")
-    //     {
-    //         cout << "Incorrect insert result. Expected apple banana elephant doctor cat but got : " << mq_str << endl;
-    //     }
-    // }
-    // catch (exception &e)
-    // {
-    //     cerr << "Error inserting into the priority queue : " << e.what() << endl;
-    // }
+        if (mq_str != "apple banana elephant doctor cat")
+        {
+            cout << "Incorrect insert result. Expected apple banana elephant doctor cat but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error inserting into the priority queue : " << e.what() << endl;
+    }
 
     delete[] int_data;
     delete[] float_data;
-    // delete[] char_data;
-    // delete[] string_data;
+    delete[] char_data;
+    delete[] string_data;
 }
 
 void test_min()
