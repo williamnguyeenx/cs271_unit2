@@ -131,11 +131,13 @@ void MinQueue<T>::insert(const T& x)
     ptrHeap[heap-1] = x; // Place x at the end of the heap
     int i = heap - 1; // Trace heap from bottom
 
-    while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) 
-    {
-        swap(ptrHeap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than those behind
-        i = parent(i); // Check if new position still satisfies min-heap property
-    }  
+    // while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) 
+    // {
+    //     swap(ptrHeap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than those behind
+    //     i = parent(i); // Check if new position still satisfies min-heap property
+    // }  
+
+    decrease_key(i, x);
 }
 
 //========================================================
@@ -215,7 +217,7 @@ void MinQueue<T>::decrease_key(int i, T k)
 
     ptrHeap[i] = k; // Assign new key to current key
 
-    while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) // Find the correct position for new key
+    while (i >= 0 && ptrHeap[parent(i)] > ptrHeap[i]) // Find the correct position for new key
     {
         T temp = ptrHeap[parent(i)]; 
         ptrHeap[parent(i)] = ptrHeap[i];
@@ -290,7 +292,7 @@ template <class T>
 void MinQueue<T>::sort(T* A)
 {
     build_heap();
-    for (int i = array; i >= 2; i--)
+    for (int i = array-1; i >= 2; i--)
     {
         T temp = ptrHeap[0]; 
         ptrHeap[0] = ptrHeap[i];
