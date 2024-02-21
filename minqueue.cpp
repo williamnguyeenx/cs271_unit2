@@ -250,7 +250,7 @@ void MinQueue<T>::build_heap( void )
 //========================================================
 
 template <class T>
-void MinQueue<T>::sort(const MinQueue<T> &A)
+void MinQueue<T>::sort(MinQueue<T> &A)
 {
     build_heap();
     for (int i = array; i >= 2; i--)

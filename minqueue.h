@@ -44,7 +44,7 @@ class MinQueue{
         void                decrease_key        (int i, T k);
         void                min_heapify         (int i);
         void                build_heap          (void);
-        void                sort                (const MinQueue<T> &A);
+        void                sort                (MinQueue<T> &A);
         string              to_string           (void) const;
         void                set                 (int i, const T& val);
         void                allocate            (int n);
