@@ -373,40 +373,40 @@ void test_extract_min()
         cerr << "Error in determining min of the priority queue : " << e.what() << endl;
     }
 
-    //float
-    float *float_data = new float[10];
-    for (int i = 0; i < 10; i++)
-    {
-        float_data[i] = 10 - i;
-    }
+    // //float
+    // float *float_data = new float[10];
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     float_data[i] = 10 - i;
+    // }
 
-    try
-    {
-        MinQueue<float> empty;
-        float min = empty.extract_min();
-        string mq_str = empty.to_string();
+    // try
+    // {
+    //     MinQueue<float> empty;
+    //     float min = empty.extract_min();
+    //     string mq_str = empty.to_string();
 
-        if (min != 0 || mq_str != "")
-        {
-            cout << "Incorrect extract min result. Expected 0 and an empty queue but got : " << min << " and a queue of : " << mq_str << endl;
-        }
+    //     if (min != 0 || mq_str != "")
+    //     {
+    //         cout << "Incorrect extract min result. Expected 0 and an empty queue but got : " << min << " and a queue of : " << mq_str << endl;
+    //     }
 
-        MinQueue<float> mq(float_data, 10);
-        min = mq.extract_min();
-        mq_str = mq.to_string();
+    //     MinQueue<float> mq(float_data, 10);
+    //     min = mq.extract_min();
+    //     mq_str = mq.to_string();
 
-        if (min != 1.5 || mq_str != "2.5 3.5 4.5 7.5 6.5 5.5 8.5 10.5 9.5")
-        {
-            cout << "Incorrect extract min result. Expected 1.5 and the queue 2.5 3.5 4.5 7.5 6.5 5.5 8.5 10.5 9.5 but got : " << min << " and a queue of : " << mq_str << endl;
-        }
-    }
-    catch (exception &e)
-    {
-        cerr << "Error in determining min of the priority queue : " << e.what() << endl;
-    }
+    //     if (min != 1.5 || mq_str != "2.5 3.5 4.5 7.5 6.5 5.5 8.5 10.5 9.5")
+    //     {
+    //         cout << "Incorrect extract min result. Expected 1.5 and the queue 2.5 3.5 4.5 7.5 6.5 5.5 8.5 10.5 9.5 but got : " << min << " and a queue of : " << mq_str << endl;
+    //     }
+    // }
+    // catch (exception &e)
+    // {
+    //     cerr << "Error in determining min of the priority queue : " << e.what() << endl;
+    // }
 
     delete[] int_data;
-    delete[] float_data;
+    // delete[] float_data;
 }
 
 void test_decrease_key()

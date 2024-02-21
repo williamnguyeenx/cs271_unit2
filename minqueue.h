@@ -37,7 +37,7 @@ class MinQueue{
                             MinQueue            (void);
                             MinQueue            (T* A, int n);
                             ~MinQueue           (void);
-        // MinQueue<T>         operator=           (const MinQueue<T> &A);
+        MinQueue<T>         operator=           (const MinQueue<T> &A);
         void                insert              (const T& x);
         T                   min                 (void);
         T                   extract_min         (void);
@@ -49,16 +49,16 @@ class MinQueue{
         void                set                 (int i, const T& val);
         void                allocate            (int n);
 
-// friend std::ostream& operator<<(std::ostream& os, const MinQueue<T>& A) {
-//         os << "[ ";
-//         for (int i = 0; i < A.heap; i++) 
-//         {
-//             os << A.ptrHeap[i];
-//             if (i < A.heap - 1) os << ", ";
-//         }
-//         os << " ]";
-//         return os;
-//     }
+    friend std::ostream& operator<<(std::ostream& os, const MinQueue<T>& A) {
+        os << "[ ";
+        for (int i = 0; i < A.heap; i++) 
+        {
+            os << A.ptrHeap[i];
+            if (i < A.heap - 1) os << ", ";
+        }
+        os << " ]";
+        return os;
+    }
 };
 
 #include "minqueue.cpp"

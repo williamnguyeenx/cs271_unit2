@@ -91,25 +91,25 @@ MinQueue<T>::~MinQueue( void )
 // Post-condition: Created a copy of the existing MinQueue object
 //========================================================
 
-// template <class T>
-// MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
-// {
-//     if (this != &A) // Prevent self-assignment
-//         delete [] ptrHeap; // Deallocate original heap
+template <class T>
+MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
+{
+    if (this != &A) // Prevent self-assignment
+        delete [] ptrHeap; // Deallocate original heap
 
-//     array = A.array; // Set the capacity to A's capacity
-//     heap = A.heap; // Set the heap size to A's heap size
-//     ptrHeap = new T[array]; // Allocate memory for the new heap
+    array = A.array; // Set the capacity to A's capacity
+    heap = A.heap; // Set the heap size to A's heap size
+    ptrHeap = new T[array]; // Allocate memory for the new heap
 
-//     for(int i = 0; i < heap; i++) 
-//     {
-//         ptrHeap[i] = A[i]; // Copy each element from A to ptrHeap
-//     }
+    for(int i = 0; i < heap; i++) 
+    {
+        ptrHeap[i] = A[i]; // Copy each element from A to ptrHeap
+    }
 
-//     build_heap(); // Transform the array into a min heap
+    build_heap(); // Transform the array into a min heap
 
-//     return *this; // Return address of copied heap
-// }
+    return *this; // Return address of copied heap
+}
 
 //========================================================
 // insert
@@ -130,12 +130,6 @@ void MinQueue<T>::insert(const T& x)
 
     ptrHeap[heap-1] = x; // Place x at the end of the heap
     int i = heap - 1; // Trace heap from bottom
-
-    // while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) 
-    // {
-    //     swap(ptrHeap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than those behind
-    //     i = parent(i); // Check if new position still satisfies min-heap property
-    // }  
 
     decrease_key(i, x);
 }
@@ -217,11 +211,9 @@ void MinQueue<T>::decrease_key(int i, T k)
 
     ptrHeap[i] = k; // Assign new key to current key
 
-    while (i >= 0 && ptrHeap[parent(i)] > ptrHeap[i]) // Find the correct position for new key
+    while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) // Find the correct position for new key
     {
-        T temp = ptrHeap[parent(i)]; 
-        ptrHeap[parent(i)] = ptrHeap[i];
-        ptrHeap[i] = temp; // Push new key to higher position so that it's smaller than those behind
+        swap(ptrHeap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than those behind
         i = parent(i); // Check if new position still satisfies min-heap property
     }
 }
@@ -272,7 +264,7 @@ template <class T>
 void MinQueue<T>::build_heap( void )
 {
     heap = array;
-    for (int i = (array-1)/2; i >= 0; i--) 
+    for (int i = floor((array-1)/2); i >= 0; i--) 
     {
         min_heapify(i);     //Run min_heapify
     }
@@ -387,6 +379,6 @@ void MinQueue<T>::allocate( int n )
         newPtrHeap[i] = ptrHeap[i];
 
     delete[] ptrHeap; // Deallocate current heap to prevent memory leak
-    ptrHeap = newPtrHeap; // Fix the pointer to point to new hap
+    ptrHeap = newPtrHeap; // Fix the pointer to point to new heap
     array = n; // Set array size to be n
 }
