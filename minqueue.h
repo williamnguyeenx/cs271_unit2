@@ -38,26 +38,25 @@ class MinQueue{
                             MinQueue            (const MinQueue<T> &A, int n);
         MinQueue<T>         operator=           (const MinQueue<T> &A, int n);
                             ~MinQueue           (void);
-        void                insert              (const T x)
-        T&                  min                 (const MinQueue<T> &A);
-        T&                  extract_min         (const MinQueue<T> &A);
+        void                insert              (const T& x);
+        T&                  min                 (void);
+        T&                  extract_min         (void);
         void                decrease_key        (int i, T k);
         void                min_heapify         (int i);
         void                build_heap          (void);
-        void                sort                (const T* A);
-        string              to_string           (void);
-        void                set                 (int i, T val);
+        void                sort                (void);
+        string              to_string           (void) const;
+        void                set                 (int i, const T& val);
         void                allocate            (int n);
 
-friend ostream & operator << ( ostream &os, const MinQueue<T> A )
-    {
+friend std::ostream& operator<<(std::ostream& os, const MinQueue<T>& A) {
         os << "[ ";
-        for ( int i = 0; i < A.heap; i++ )
-            os << A.ptrHeap[i] << ", ";
-        if ( A.heap != 0 )
-            os << A.ptrHeap[A.heap-1] << " ]";
-        else
-            os << " ]";
+        for (int i = 0; i < A.heap; i++) 
+        {
+            os << A.ptrHeap[i];
+            if (i < A.heap - 1) os << ", ";
+        }
+        os << " ]";
         return os;
     }
 };

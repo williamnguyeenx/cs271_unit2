@@ -106,7 +106,7 @@ MinQueue<T>::~MinQueue( void )
 //========================================================
 
 template <class T>
-void MinQueue<T>::insert(const T x)
+void MinQueue<T>::insert(const T& x)
 {
     if (heap >= array)
     {
@@ -129,7 +129,7 @@ void MinQueue<T>::insert(const T x)
 //========================================================
 
 template <class T>
-T& MinQueue<T>::min(const MinQueue<T> &A)
+T& MinQueue<T>::min(void)
 {
     if (array < 1 || heap < 1)
     {
@@ -149,7 +149,7 @@ T& MinQueue<T>::min(const MinQueue<T> &A)
 //========================================================
 
 template <class T>
-T& MinQueue<T>::extract_min(const MinQueue<T> &A)
+T& MinQueue<T>::extract_min(void)
 {
     T min = min();
     ptrHeap[0] = ptrHeap[heap-1];
@@ -197,7 +197,7 @@ void MinQueue<T>::decrease_key( int i, T k )
 //========================================================
 
 template <class T>
-void MinQueue<T>::min_heapify( int i )
+void MinQueue<T>::min_heapify(int i)
 {
     int l = left(i);
     int r = right(i);
@@ -221,7 +221,7 @@ void MinQueue<T>::min_heapify( int i )
 }
 
 //========================================================
-// build_min_heap
+// build_heap
 // Produce a min-heap for MinQueue object
 // Parameter: None
 // Return value: None
@@ -250,7 +250,7 @@ void MinQueue<T>::build_heap( void )
 //========================================================
 
 template <class T>
-void MinQueue<T>::sort( const T* A )
+void MinQueue<T>::sort(void)
 {
     build_heap();
     for (int i = array; i >= 2; i--)
@@ -288,7 +288,7 @@ void MinQueue<T>::sort( const T* A )
 // Post-condition: return a string of the object's data
 //========================================================
 template <class T>
-string MinQueue<T>::to_string( void )
+string MinQueue<T>::to_string( void ) const
 {
     stringstream result;
     for(int i = 0; i <= heap; i++)
@@ -308,7 +308,7 @@ string MinQueue<T>::to_string( void )
 // Post-condition: an array whose value at index i is val
 //========================================================
 template <class T>
-void MinQueue<T>::set( int i, T val )
+void MinQueue<T>::set( int i, const T& val )
 {
     ptrHeap[i] = val;
 }
@@ -323,7 +323,7 @@ void MinQueue<T>::set( int i, T val )
 // of size at least n
 //========================================================
 template <class T>
-void MinQueue<T>::allocate( int n ) //copy elements to new array?
+void MinQueue<T>::allocate( int n ) 
 {
     if (n <= array)
         return;
