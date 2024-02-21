@@ -6,7 +6,7 @@ using namespace std;
 
 void test_minqueue()
 {
-
+    // int type
     int *int_data = new int[10];
     for (int i = 0; i < 10; i++)
     {
@@ -15,7 +15,6 @@ void test_minqueue()
 
     try
     {
-
         MinQueue<int> empty;
         string mq_str = empty.to_string();
 
@@ -37,12 +36,106 @@ void test_minqueue()
         cerr << "Error creating the priority queue : " << e.what() << endl;
     }
 
+    // float type
+    float *float_data = new float[10];
+    for (int i = 0; i < 10; i++)
+    {
+        float_data[i] = 10.5 - i;
+    }
+
+    try
+    {
+        MinQueue<float> empty;
+        string mq_str = empty.to_string();
+
+        if (mq_str != "")
+        {
+            cout << "Incorrect result from empty constructor. Expected an empty string but got : " << mq_str << endl;
+        }
+
+        MinQueue<float> mq(float_data, 10);
+        mq_str = mq.to_string();
+
+        if (mq_str != "1.5 2.5 4.5 3.5 6.5 5.5 8.5 10.5 7.5 9.5")
+        {
+            cout << "Incorrect result from empty constructor. Expected 1.5 2.5 4.5 3.5 6.5 5.5 8.5 10.5 7.5 9.5 but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error creating the priority queue : " << e.what() << endl;
+    }
+
+    // char type
+    char *char_data = new char[3];
+    char arr1[] = {'x','y','z'};
+    for (int i = 0; i < 3; i++)
+    {
+        char_data[i] = arr1[i];
+    }
+
+    try
+    {
+        MinQueue<char> empty;
+        string mq_str = empty.to_string();
+
+        if (mq_str != "")
+        {
+            cout << "Incorrect result from empty constructor. Expected an empty string but got : " << mq_str << endl;
+        }
+
+        MinQueue<char> mq(char_data, 3);
+        mq_str = mq.to_string();
+
+        if (mq_str != "x y z")
+        {
+            cout << "Incorrect result from empty constructor. Expected x y z but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error creating the priority queue : " << e.what() << endl;
+    }
+
+    string *string_data = new string[3];
+    string arr2[] = {"apple","banana","cat"};
+    for (int i = 0; i < 3; i++)
+    {
+        string_data[i] = arr2[i];
+    }
+
+    try
+    {
+        MinQueue<string> empty;
+        string mq_str = empty.to_string();
+
+        if (mq_str != "")
+        {
+            cout << "Incorrect result from empty constructor. Expected an empty string but got : " << mq_str << endl;
+        }
+
+        MinQueue<string> mq(string_data, 3);
+        mq_str = mq.to_string();
+
+        if (mq_str != "apple banana cat")
+        {
+            cout << "Incorrect result from empty constructor. Expected apple banana cat but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error creating the priority queue : " << e.what() << endl;
+    }
+
     delete[] int_data;
+    delete[] float_data;
+    delete[] char_data;
+    delete[] string_data;
 }
 
 void test_insert()
 {
-
+    //int type
     int *int_data = new int[10];
     for (int i = 0; i < 10; i++)
     {
@@ -51,7 +144,6 @@ void test_insert()
 
     try
     {
-
         MinQueue<int> empty;
         empty.insert(0);
         string mq_str = empty.to_string();
@@ -76,12 +168,115 @@ void test_insert()
         cerr << "Error inserting into the priority queue : " << e.what() << endl;
     }
 
+    //float type
+    float *float_data = new float[10];
+    for (int i = 0; i < 10; i++)
+    {
+        float_data[i] = 10.5 - i;
+    }
+    try
+    {
+        MinQueue<float> empty;
+        empty.insert(0.5);
+        string mq_str = empty.to_string();
+
+        if (mq_str != "0.5")
+        {
+            cout << "Incorrect insert result. Epected 0.5 but got : " << mq_str << endl;
+        }
+
+        MinQueue<float> mq(float_data, 10);
+        mq.insert(25.5);
+        mq.insert(0.5);
+        mq_str = mq.to_string();
+
+        if (mq_str != "0.5 2.5 1.5 3.5 6.5 4.5 8.5 10.5 7.5 9.5 25.5 5.5")
+        {
+            cout << "Incorrect insert result. Expected 0.5 2.5 1.5 3.5 6.5 4.5 8.5 10.5 7.5 9.5 25.5 5.5 but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error inserting into the priority queue : " << e.what() << endl;
+    }
+
+    char *char_data = new char[3];
+    char arr1[] = {'x','y','z'};
+    for (int i = 0; i < 3; i++)
+    {
+        char_data[i] = arr1[i];
+    }
+
+    try
+    {
+        MinQueue<char> empty;
+        empty.insert('a');
+        string mq_str = empty.to_string();
+
+        if (mq_str != "a")
+        {
+            cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
+        }
+
+        MinQueue<char> mq(char_data, 10);
+        mq.insert('a');
+        mq.insert('b');
+        mq_str = mq.to_string();
+
+        if (mq_str != "a b z x y")
+        {
+            cout << "Incorrect insert result. Expected a b z x y but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error inserting into the priority queue : " << e.what() << endl;
+    }
+
+
+    string *string_data = new string[3];
+    string arr2[] = {"apple","doctor","elephant"};
+    for (int i = 0; i < 3; i++)
+    {
+        string_data[i] = arr2[i];
+    }
+
+    try
+    {
+        MinQueue<string> empty;
+        empty.insert('a');
+        string mq_str = empty.to_string();
+
+        if (mq_str != "a")
+        {
+            cout << "Incorrect insert result. Epected a but got : " << mq_str << endl;
+        }
+
+        MinQueue<string> mq(string_data, 10);
+        mq.insert("banana");
+        mq.insert("cat");
+        mq_str = mq.to_string();
+
+        if (mq_str != "apple banana elephant doctor cat")
+        {
+            cout << "Incorrect insert result. Expected apple banana elephant doctor cat but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error inserting into the priority queue : " << e.what() << endl;
+    }
+
     delete[] int_data;
+    delete[] int_data;
+    delete[] float_data;
+    delete[] char_data;
+    delete[] string_data;
 }
 
 void test_min()
 {
-
+    //int
     int *int_data = new int[10];
     for (int i = 0; i < 10; i++)
     {
@@ -102,7 +297,36 @@ void test_min()
         min = mq.min();
         if (min != 1)
         {
+            cout << "Incorrect min result. Expect 1 but got : " << min << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in determining min of the priority queue : " << e.what() << endl;
+    }
+
+    //int
+    float *float_data = new float[10];
+    for (int i = 0; i < 10; i++)
+    {
+        float_data[i] = 10.5 - i;
+    }
+
+    try
+    {
+
+        MinQueue<float> empty;
+        float min = empty.min();
+        if (min != 0)
+        {
             cout << "Incorrect min result. Expect 0 but got : " << min << endl;
+        }
+
+        MinQueue<float> mq(float_data, 10);
+        min = mq.min();
+        if (min != 1.5)
+        {
+            cout << "Incorrect min result. Expect 1 but got : " << min << endl;
         }
     }
     catch (exception &e)
@@ -111,11 +335,13 @@ void test_min()
     }
 
     delete[] int_data;
+    delete[] float_data;
+    
 }
 
 void test_extract_min()
 {
-
+    //int
     int *int_data = new int[10];
     for (int i = 0; i < 10; i++)
     {
@@ -140,7 +366,39 @@ void test_extract_min()
 
         if (min != 1 || mq_str != "2 3 4 7 6 5 8 10 9")
         {
-            cout << "Incorrect extract min result. Expected 0 and the queue 2 3 4 7 6 5 8 10 9 but got : " << min << " and a queue of : " << mq_str << endl;
+            cout << "Incorrect extract min result. Expected 1 and the queue 2 3 4 7 6 5 8 10 9 but got : " << min << " and a queue of : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in determining min of the priority queue : " << e.what() << endl;
+    }
+
+    //float
+    float *float_data = new float[10];
+    for (int i = 0; i < 10; i++)
+    {
+        float_data[i] = 10 - i;
+    }
+
+    try
+    {
+        MinQueue<float> empty;
+        float min = empty.extract_min();
+        string mq_str = empty.to_string();
+
+        if (min != 0 || mq_str != "")
+        {
+            cout << "Incorrect extract min result. Expected 0 and an empty queue but got : " << min << " and a queue of : " << mq_str << endl;
+        }
+
+        MinQueue<float> mq(float_data, 10);
+        min = mq.extract_min();
+        mq_str = mq.to_string();
+
+        if (min != 1.5 || mq_str != "2.5 3.5 4.5 7.5 6.5 5.5 8.5 10.5 9.5")
+        {
+            cout << "Incorrect extract min result. Expected 1.5 and the queue 2.5 3.5 4.5 7.5 6.5 5.5 8.5 10.5 9.5 but got : " << min << " and a queue of : " << mq_str << endl;
         }
     }
     catch (exception &e)
@@ -149,6 +407,7 @@ void test_extract_min()
     }
 
     delete[] int_data;
+    delete[] float_data;
 }
 
 void test_decrease_key()
@@ -187,7 +446,41 @@ void test_decrease_key()
         cerr << "Error in decreasing key : " << e.what() << endl;
     }
 
+    float *float_data = new float[10];
+    for (int i = 0; i < 10; i++)
+    {
+        float_data[i] = 10.5 - i;
+    }
+
+    try
+    {
+
+        MinQueue<float> empty;
+        empty.decrease_key(0, 0);
+        string mq_str = empty.to_string();
+
+        if (mq_str != "")
+        {
+            cout << "Incorrect decrease key result. Expected empty queue but got : " << mq_str << endl;
+        }
+
+        MinQueue<float> mq(float_data, 10);
+        mq.decrease_key(0, -6.5);
+        mq.decrease_key(9, -1.5);
+        mq_str = mq.to_string();
+
+        if (mq_str != "-6.5 -1.5 4.5 3.5 2.5 5.5 8.5 10.5 7.5 6.5")
+        {
+            cout << "Incorrect decrease key result. Expected -6.5 -1.5 4.5 3.5 2.5 5.5 8.5 10.5 7.5 6.5 but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in decreasing key : " << e.what() << endl;
+    }
+
     delete[] int_data;
+    delete[] float_data;
 }
 
 void test_heapify()
