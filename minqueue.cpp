@@ -136,15 +136,20 @@ MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
 template <class T>
 void MinQueue<T>::insert(const T& x)
 {
-    if (heap >= array)
+    if (heap == array) // If heap size reaches capacity -> increase size to insert
+        allocate(array * 2); // Create a new heap with bigger capacity 
+
+    heap++; // Increase heap size
+
+    ptrheap[heap-1] = x; // Place x at the end of the heap
+    int i = heap - 1; // Trace heap from bottom
+
+    while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) 
     {
-        throw invalid_argument("heap overflow");
+        swap(ptrheap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than right hand side
+        i = parent(i); // Run from parent leaf to execute swapping if needed
     }
-    heap++;
-    T k = x;
-    x = -numeric_limits<T>::infinity(); //x is const cant modify
-    ptrHeap[heap-1] =  x;
-    decrease_key(heap-1, k);
+   
 }
 
 //========================================================
