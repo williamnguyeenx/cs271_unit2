@@ -29,9 +29,9 @@ using namespace std;
 template <class T>
 MinQueue<T>::MinQueue( void )
 {
-    array = 1;
-    heap = 0;
-    ptrHeap = new T[array];
+    array = 100; // Initial capacity, adjust as needed
+    heap = 0; // Initially, the heap is empty
+    ptrHeap = new T[array]; // Allocate memory for the heap with initial capacity
 }
 
 //========================================================
@@ -48,9 +48,14 @@ MinQueue<T>::MinQueue( void )
 template <class T>
 MinQueue<T>::MinQueue( const MinQueue<T> &A, int n )
 {
+    if (n < 0) 
+    {
+        cout << "Array size cannot be negative" << endl;
+    }
+
     array = n;
-    heap = array;
-    ptrHeap = new T[heap];
+    heap = n;
+    ptrHeap = new T[array];
 
     for(int i = 0; i < n; i++) // i runs till heap-1
     {
