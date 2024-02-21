@@ -146,8 +146,8 @@ void MinQueue<T>::insert(const T& x)
 
     while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) 
     {
-        swap(ptrheap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than right hand side
-        i = parent(i); // Run from parent leaf to execute swapping if needed
+        swap(ptrheap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than those behind
+        i = parent(i); // Check if new position still satisfies min-heap property
     }  
 }
 
@@ -214,18 +214,26 @@ T MinQueue<T>::extract_min(void)
 template <class T>
 void MinQueue<T>::decrease_key(int i, T k)
 {
-    if (ptrHeap[i] < k )
+    if (i < 0 || i >= heap) // Check if i is out of bound
     {
-        cout << "Cannot decrease to k for k is bigger than the target element" << endl;
+        cout << "Index out of range" << endl;
         return;
     }
-    ptrHeap[i] = k;
-    while (i > 1 && ptrHeap[parent(i)] > ptrHeap[i])
+
+    if (ptrHeap[i] < k ) // Check if new key is bigger than current key
+    {
+        cout << "Current key is smaller than new key" << endl;
+        return;
+    }
+
+    ptrHeap[i] = k; // Assign new key to current key
+
+    while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) // Find the correct position for new key
     {
         T temp = ptrHeap[parent(i)]; 
         ptrHeap[parent(i)] = ptrHeap[i];
-        ptrHeap[i] = temp;
-        i = parent(i);
+        ptrHeap[i] = temp; // Push new key to higher position so that it's smaller than those behind
+        i = parent(i); // Check if new position still satisfies min-heap property
     }
 }
 
