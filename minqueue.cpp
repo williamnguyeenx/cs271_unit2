@@ -29,9 +29,9 @@ using namespace std;
 template <class T>
 MinQueue<T>::MinQueue( void )
 {
-    array = 1; // Initial capacity, adjust as needed
-    heap = 0; // Initially, the heap is empty
-    ptrHeap = new T[array]; // Allocate memory for the heap with initial capacity
+    array = 1;                                              // Initial capacity, adjust as needed
+    heap = 0;                                               // Initially, the heap is empty
+    ptrHeap = new T[array];                                 // Allocate memory for the heap with initial capacity
 }
 
 //========================================================
@@ -39,7 +39,8 @@ MinQueue<T>::MinQueue( void )
 // copy constructor
 // Create a MinQueue and copy elements from an existing MinQueue
 // Parameter: const MinQueue<T> &A - Object's elements to be copied
-//            int n - size of array to be set for the newly create MinQueue object
+//            int n - size of array to be set for the 
+//                    newly create MinQueue object
 // Return value: None
 // Pre-condition: Exists a MinQueue object
 // Post-condition: Created a copy of the existing MinQueue object
@@ -48,21 +49,21 @@ MinQueue<T>::MinQueue( void )
 template <class T>
 MinQueue<T>::MinQueue( T* A, int n )
 {
-    if (n < 0) // Ensure n is not negative
+    if (n < 0)                                              // Ensure n is not negative
     {
         cout << "Array size cannot be negative" << endl;
     }
 
-    array = n; // Set the capacity to n
-    heap = n; // The heap size is also n since we're copying all elements
-    ptrHeap = new T[array]; // Allocate memory for the heap
+    array = n;                                              // Set the capacity to n
+    heap = n;                                               // The heap size is also n since we're copying all elements
+    ptrHeap = new T[array];                                 // Allocate memory for the heap
 
     for(int i = 0; i < n; i++) 
     {
-        ptrHeap[i] = A[i]; // Copy each element from A to ptrHeap
+        ptrHeap[i] = A[i];                                  // Copy each element from A to ptrHeap
     }
 
-    build_heap(); // Transform the array into a min heap
+    build_heap();                                           // Transform the array into a min heap
 }
 
 
@@ -94,21 +95,21 @@ MinQueue<T>::~MinQueue( void )
 template <class T>
 MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
 {
-    if (this != &A) // Prevent self-assignment
-        delete [] ptrHeap; // Deallocate original heap
+    if (this != &A)                                                 // Prevent self-assignment
+        delete [] ptrHeap;                                          // Deallocate original heap
 
-    array = A.array; // Set the capacity to A's capacity
-    heap = A.heap; // Set the heap size to A's heap size
-    ptrHeap = new T[array]; // Allocate memory for the new heap
+    array = A.array;                                                // Set the capacity to A's capacity
+    heap = A.heap;                                                  // Set the heap size to A's heap size
+    ptrHeap = new T[array];                                         // Allocate memory for the new heap
 
     for(int i = 0; i < heap; i++) 
     {
-        ptrHeap[i] = A[i]; // Copy each element from A to ptrHeap
+        ptrHeap[i] = A[i];                                          // Copy each element from A to ptrHeap
     }
 
-    build_heap(); // Transform the array into a min heap
+    build_heap();                                                   // Transform the array into a min heap
 
-    return *this; // Return address of copied heap
+    return *this;                                                   // Return address of copied heap
 }
 
 //========================================================
@@ -116,20 +117,22 @@ MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
 // Insert an element into MinQueue
 // Parameter: T x - element to be inserted
 // Return value: None
-// Pre-condition: MinQueue object have spare capacity for new element(s)
-// Post-condition: Updated MinQueue object with the new element inserted
+// Pre-condition: MinQueue object have spare capacity 
+// for new element(s)
+// Post-condition: Updated MinQueue object with the 
+// new element inserted
 //========================================================
 
 template <class T>
 void MinQueue<T>::insert(const T& x)
 {
-    if (heap == array) // If heap size reaches capacity -> increase size to insert
-        allocate(array * 2); // Create a new heap with bigger capacity 
+    if (heap == array)                                          // If heap size reaches capacity -> increase size to insert
+        allocate(array * 2);                                    // Create a new heap with bigger capacity 
 
-    heap++; // Increase heap size
+    heap++;                                                     // Increase heap size
 
-    ptrHeap[heap-1] = x; // Place x at the end of the heap
-    int i = heap - 1; // Trace heap from bottom
+    ptrHeap[heap-1] = x;                                        // Place x at the end of the heap
+    int i = heap - 1;                                           // Trace heap from bottom
 
     decrease_key(i, x);
 }
@@ -148,10 +151,10 @@ T MinQueue<T>::min(void)
 {
     if (heap == 0)
     {
-        cout << "Heap is empty" << endl; // Not return if heap is empty
+        cout << "Heap is empty" << endl;                        // Not return if heap is empty
         return T();
     }
-    return ptrHeap[0]; // Return the first element in heap because it's the smallest
+    return ptrHeap[0];                                          // Return the first element in heap because it's the smallest
 }
 
 //========================================================
@@ -169,18 +172,18 @@ T MinQueue<T>::extract_min(void)
 {
     if (heap == 0)
     {
-        cout << "Heap is empty" << endl; // Not return if heap is empty
+        cout << "Heap is empty" << endl;                        // Not return if heap is empty
         return T();
     }
 
-    T minElement = ptrHeap[0]; // Min element is the first element
-    ptrHeap[0] = ptrHeap[heap-1]; // Push first element to the bottom 
-    heap--; // Decrease the size of the heap to remove last element from heap
+    T minElement = ptrHeap[0];                                  // Min element is the first element
+    ptrHeap[0] = ptrHeap[heap-1];                               // Push first element to the bottom 
+    heap--;                                                     // Decrease the size of the heap to remove last element from heap
 
     if (heap > 0)
-        min_heapify(0); // Restore the min-heap property
+        min_heapify(0);                                         // Restore the min-heap property
 
-    return minElement; // Return the minimum element
+    return minElement;                                          // Return the minimum element
 }
 
 //========================================================
@@ -197,24 +200,24 @@ T MinQueue<T>::extract_min(void)
 template <class T>
 void MinQueue<T>::decrease_key(int i, T k)
 {
-    if (i < 0 || i >= heap) // Check if i is out of bound
+    if (i < 0 || i >= heap)                                     // Check if i is out of bound
     {
         cout << "Index out of range" << endl;
         return;
     }
 
-    if (ptrHeap[i] < k ) // Check if new key is bigger than current key
+    if (ptrHeap[i] < k )                                        // Check if new key is bigger than current key
     {
         cout << "Current key is smaller than new key" << endl;
         return;
     }
 
-    ptrHeap[i] = k; // Assign new key to current key
+    ptrHeap[i] = k;                                             // Assign new key to current key
 
-    while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i]) // Find the correct position for new key
+    while (i > 0 && ptrHeap[parent(i)] > ptrHeap[i])            // Find the correct position for new key
     {
-        swap(ptrHeap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than those behind
-        i = parent(i); // Check if new position still satisfies min-heap property
+        swap(ptrHeap[i], ptrHeap[parent(i)]);                   // Constantly switch val at i so that it's smaller than those behind
+        i = parent(i);                                          // Check if new position still satisfies min-heap property
     }
 }
 
@@ -230,24 +233,23 @@ void MinQueue<T>::decrease_key(int i, T k)
 template <class T>
 void MinQueue<T>::min_heapify(int i)
 {
-    int l = left(i); // Get left child index
-    int r = right(i); // Get right child index
-    int smallest = i; // Variable to store smallest value when comparing
+    int l = left(i);                                            // Get left child index
+    int r = right(i);                                           // Get right child index
+    int smallest = i;                                           // Variable to store smallest value when comparing
 
-    if (l < heap && ptrHeap[l] < ptrHeap[i]) // Value at l is the smallest if it's smaller than value at i 
+    if (l < heap && ptrHeap[l] < ptrHeap[i])                    // Value at l is the smallest if it's smaller than value at i 
         smallest = l;
 
-    if (r < heap && ptrHeap[r] < ptrHeap[smallest]) // Value at r is the smallest if it's smaller than the current smallest
+    if (r < heap && ptrHeap[r] < ptrHeap[smallest])             // Value at r is the smallest if it's smaller than the current smallest
         smallest = r;
     
-    // If the smallest is not the current node, swap it with 
-    // the smallest and heapify the subtree
-    if (smallest != i)
+    
+    if (smallest != i)                                          // If the smallest is not the current node, swap it with the smallest and heapify the subtree
     {
         T temp = ptrHeap[i]; 
         ptrHeap[i] = ptrHeap[smallest];
         ptrHeap[smallest] = temp;
-        min_heapify(smallest); // Heapify the subtree from smallest 
+        min_heapify(smallest);                                  // Heapify the subtree from smallest 
     }
 }
 
@@ -266,7 +268,7 @@ void MinQueue<T>::build_heap( void )
     heap = array;
     for (int i = floor(array/2); i >= 0; i--) 
     {
-        min_heapify(i);     //Run min_heapify
+        min_heapify(i);                                     //Run min_heapify
     }
 
 }
@@ -283,22 +285,17 @@ void MinQueue<T>::build_heap( void )
 template <class T>
 void MinQueue<T>::sort(T* A)
 {
-    build_heap();
-    for (int i = array-1; i >= 0; i--)
+    build_heap();                                           // Establishes min-heap property
+    for (int i = array-1; i >= 0; i--)                      // Iterate from the bottom of the heap
     {
-        T temp = ptrHeap[0]; 
+        T temp = ptrHeap[0];                                // Swap root element with the last element in the heap
         ptrHeap[0] = ptrHeap[i];
         ptrHeap[i] = temp;
-        A[array-i-1] = ptrHeap[i]; 
-        heap--;
-        min_heapify(0);
+        A[array-i-1] = ptrHeap[i];                          // Add the current smallest element at the end of array A
+        heap--;                                             // Decrease size to no longer access the current last element
+        min_heapify(0);                                     // Reestablises the min-heap property in heap
     }
 }
-
-//int size = heap; 
- // { 
- //     A[i] = extract_min();
-// }
 
 //========================================================
 // to_string
@@ -312,16 +309,16 @@ void MinQueue<T>::sort(T* A)
 template <class T>
 string MinQueue<T>::to_string( void ) const
 {
-    stringstream result;
-    for(int i = 0; i <= heap-1; i++)
+    stringstream result;                                    // Stringstream object to hold the data of heap
+    for(int i = 0; i <= heap-1; i++)                        // For loop to extract data from heap
     {
-        if (i != heap-1)
-            result << ptrHeap[i] << " ";
+        if (i != heap-1)                                    // If statement to avoid whitespace at the end of the string
+            result << ptrHeap[i] << " ";                    // Add data from heap to stringstream object
         else
             result << ptrHeap[i];
     }
 
-    return result.str();
+    return result.str();                                    // Convert stringstream to string type
 }
 
 //========================================================
@@ -370,15 +367,15 @@ void MinQueue<T>::set( int i, const T& val )
 template <class T>
 void MinQueue<T>::allocate( int n ) 
 {
-    if (n <= array) // Check if new size is >= current array size
+    if (n <= array)                                         // Check if new size is >= current array size
         return;
 
-    T* newPtrHeap = new T[n]; // Allocate dynamic memory for a new heap with new size n
+    T* newPtrHeap = new T[n];                               // Allocate dynamic memory for a new heap with new size n
 
-    for (int i = 0; i < heap; i++) // Copy values from current heap to new heap
+    for (int i = 0; i < heap; i++)                          // Copy values from current heap to new heap
         newPtrHeap[i] = ptrHeap[i];
 
-    delete[] ptrHeap; // Deallocate current heap to prevent memory leak
-    ptrHeap = newPtrHeap; // Fix the pointer to point to new heap
-    array = n; // Set array size to be n
+    delete[] ptrHeap;                                       // Deallocate current heap to prevent memory leak
+    ptrHeap = newPtrHeap;                                   // Fix the pointer to point to new heap
+    array = n;                                              // Set array size to be n
 }
