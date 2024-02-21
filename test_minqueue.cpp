@@ -476,7 +476,7 @@ void test_extract_min()
 
 void test_decrease_key()
 {
-
+    //int
     int *int_data = new int[10];
     for (int i = 0; i < 10; i++)
     {
@@ -510,6 +510,7 @@ void test_decrease_key()
         cerr << "Error in decreasing key : " << e.what() << endl;
     }
 
+    //float
     float *float_data = new float[10];
     for (int i = 0; i < 10; i++)
     {
