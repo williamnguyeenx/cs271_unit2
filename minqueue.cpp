@@ -264,7 +264,7 @@ template <class T>
 void MinQueue<T>::build_heap( void )
 {
     heap = array;
-    for (int i = floor((array-1)/2); i >= 0; i--) 
+    for (int i = floor(array/2); i >= 0; i--) 
     {
         min_heapify(i);     //Run min_heapify
     }
@@ -284,7 +284,7 @@ template <class T>
 void MinQueue<T>::sort(T* A)
 {
     build_heap();
-    for (int i = array-1; i >= 2; i--)
+    for (int i = array-1; i >= 0; i--)
     {
         T temp = ptrHeap[0]; 
         ptrHeap[0] = ptrHeap[i];
