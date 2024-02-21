@@ -123,8 +123,7 @@ void MinQueue<T>::insert(const T x)
 // min
 // Get the smallest element of MinQueue
 // Parameter: None
-// Return value: ptrHeap[0] - the root element/smallest element 
-// in MinQueue object
+// Return value: smallest element in heap
 // Pre-condition: Exist a MinQueue object
 // Post-condition: Return the smallest element in the MinQueue
 //========================================================
@@ -143,8 +142,7 @@ T& MinQueue<T>::min(const MinQueue<T> &A)
 // extract_min
 // Get and remove the smallest element of MinQueue
 // Parameter: None
-// Return value: min - the root element/smallest element 
-// in MinQueue object
+// Return value: smallest element in heap
 // Pre-condition: Exist a MinQueue object
 // Post-condition: Return the smallest element in the MinQueue 
 // and extract it from heap
@@ -244,6 +242,11 @@ void MinQueue<T>::build_heap( void )
 
 //========================================================
 // sort
+// Sorts the heap in ascending order
+// Parameter: reference call to heap 
+// Return value: None
+// Pre-condition: Exist non-empty MinQueue object
+// Post-condition: Created a min-heap MinQueue object
 //========================================================
 
 template <class T>
@@ -312,13 +315,25 @@ void MinQueue<T>::set( int i, T val )
 
 //========================================================
 // allocate
+// Creates a new array with capacity of at least n
+// Parameter: int n - new capacity
+// Return value: None
+// Pre-condition: Exist non-empty MinQueue object
+// Post-condition: Created a MinQueue object
+// of size at least n
 //========================================================
 template <class T>
 void MinQueue<T>::allocate( int n ) //copy elements to new array?
 {
-    if (array < n)
-    {
-        cout << "Array size does not reach minimum." << endl;
+    if (n <= array)
         return;
-    }
+
+    T* newPtrHeap = new T[n];
+
+    for (int i = 0; i < heap; i++)
+        newPtrHeap[i] = ptrHeap[i];
+
+    delete[] ptrHeap;
+    ptrHeap = newPtrHeap;
+    array = n;
 }
