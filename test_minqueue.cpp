@@ -200,6 +200,7 @@ void test_insert()
         cerr << "Error inserting into the priority queue : " << e.what() << endl;
     }
 
+    //char 
     char *char_data = new char[3];
     char arr1[] = {'x','y','z'};
     for (int i = 0; i < 3; i++)
@@ -233,7 +234,7 @@ void test_insert()
         cerr << "Error inserting into the priority queue : " << e.what() << endl;
     }
 
-
+    //string
     string *string_data = new string[3];
     string arr2[] = {"apple","doctor","elephant"};
     for (int i = 0; i < 3; i++)
@@ -304,7 +305,7 @@ void test_min()
         cerr << "Error in determining min of the priority queue : " << e.what() << endl;
     }
 
-    //int
+    //float 
     float *float_data = new float[10];
     for (int i = 0; i < 10; i++)
     {
@@ -325,7 +326,7 @@ void test_min()
         min = mq.min();
         if (min != 1.5)
         {
-            cout << "Incorrect min result. Expect 1 but got : " << min << endl;
+            cout << "Incorrect min result. Expect 1.5 but got : " << min << endl;
         }
     }
     catch (exception &e)
@@ -333,8 +334,72 @@ void test_min()
         cerr << "Error in determining min of the priority queue : " << e.what() << endl;
     }
 
+    //char
+    char *char_data = new char[3];
+    char arr1[] = {'a','b','c'};
+    for (int i = 0; i < 3; i++)
+    {
+        char_data[i] = arr1[i];
+    }
+
+    try
+    {
+
+        MinQueue<char> empty;
+        char min = empty.min();
+        if (min != 0)
+        {
+            cout << "Incorrect min result. Expect 0 but got : " << min << endl;
+        }
+
+        MinQueue<char> mq(char_data, 3);
+        min = mq.min();
+        if (min != "a")
+        {
+            cout << "Incorrect min result. Expect a but got : " << min << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in determining min of the priority queue : " << e.what() << endl;
+    }
+
+    //string 
+    string *string_data = new string[3];
+    string arr1[] = {'apple','banana','cat'};
+    for (int i = 0; i < 3; i++)
+    {
+        string_data[i] = arr1[i];
+    }
+
+    try
+    {
+
+        MinQueue<string> empty;
+        string min = empty.min();
+        if (min != 0)
+        {
+            cout << "Incorrect min result. Expect 0 but got : " << min << endl;
+        }
+
+        MinQueue<char> mq(char_data, 3);
+        min = mq.min();
+        if (min != "apple")
+        {
+            cout << "Incorrect min result. Expect apple but got : " << min << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in determining min of the priority queue : " << e.what() << endl;
+    }
+    
+
+
     delete[] int_data;
     delete[] float_data;
+    delete[] char_data;
+    delete[] string_data;
     
 }
 
@@ -484,6 +549,7 @@ void test_decrease_key()
 
 void test_heapify()
 {
+    //int 
 
     int *empty_data = new int[0];
 
@@ -524,11 +590,53 @@ void test_heapify()
 
     delete[] empty_data;
     delete[] int_data;
+
+    //float
+
+    float *empty_data = new float[0];
+
+    float *float_data = new float[10];
+    for (int i = 0; i < 10; i++)
+    {
+        float_data[i] = 10.5 - i;
+    }
+
+    try
+    {
+
+        MinQueue<float> empty;
+        empty.min_heapify(1);
+        string mq_str = empty.to_string();
+
+        if (mq_str != "")
+        {
+            cout << "Incorrect heapify result. Expected empty string but got : " << mq_str << endl;
+        }
+
+        MinQueue<float> mq(float_data, 10);
+        string o_mq_str = mq.to_string();
+        mq.set(1, 11.5f);
+        mq.min_heapify(1);
+
+        mq_str = mq.to_string();
+
+        if (mq_str != "1.5 3.5 4.5 7.5 6.5 5.5 8.5 10.5 11.5 9.5")
+        {
+            cout << "Incorrect heapify result in heapifying index 1 in the minqueue " << o_mq_str << " after setting to 11.5. Expected 1.5 3.5 4.5 7.5 6.5 5.5 8.5 10.5 11.5 9.5 but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in heapify : " << e.what() << endl;
+    }
+
+    delete[] empty_data;
+    delete[] float_data;
 }
 
 void test_build_min_heap()
 {
-
+    //int 
     int *int_data = new int[10];
     for (int i = 0; i < 10; i++)
     {
@@ -559,12 +667,45 @@ void test_build_min_heap()
         cerr << "Error in building min heap : " << e.what() << endl;
     }
 
+    //float
+    float *float_data = new float[10];
+    for (int i = 0; i < 10; i++)
+    {
+        float_data[i] = 10.5f - i;
+    }
+
+    try
+    {
+
+        MinQueue<int> mq;
+        mq.allocate(10);
+        for (int i = 0; i < 10; i++)
+        {
+            mq.set(i, int_data[i]);
+        }
+        string o_mq_str = mq.to_string();
+
+        mq.build_heap();
+        string mq_str = mq.to_string();
+
+        if (mq_str != "1.5 2.5 4.5 3.5 6.5 5.5 8.5 10.5 7.5 9.5")
+        {
+            cout << "Incorrect build_heap result from " << o_mq_str << ". Expected 1.5 2.5 4.5 3.5 6.5 5.5 8.5 10.5 7.5 9.5 but got : " << mq_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in building min heap : " << e.what() << endl;
+    }
+
+
     delete[] int_data;
+    delete[] float_data;
 }
 
 void test_heapsort()
 {
-
+    //int
     int *empty_data = new int[0];
 
     int *int_data = new int[10];
@@ -598,7 +739,40 @@ void test_heapsort()
     {
         cerr << "Error in sorting : " << e.what() << endl;
     }
+    //float
+    float *empty_data = new float[0];
 
+    float *float_data = new float[10];
+    for (int i = 0; i < 10; i++)
+    {
+        float_data[i] = 10.5 - i;
+    }
+
+    try
+    {
+
+        MinQueue<int> empty;
+        empty.sort(empty_data);
+
+        MinQueue<int> heap(float_data, 10);
+        heap.sort(float_data);
+
+        string sorted_str = to_string(float_data[0]);
+
+        for (int i = 1; i < 10; i++)
+        {
+            sorted_str += (" " + to_string(float_data[i]));
+        }
+
+        if (sorted_str != "1.5 2.5 3.5 4.5 5.5 6.5 7.5 8.5 9.5 10.5")
+        {
+            cout << "Incorrect heapsort result. Expected 1.5 2.5 3.5 4.5 5.5 6.5 7.5 8.5 9.5 10.5 but got : " << sorted_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in sorting : " << e.what() << endl;
+    }
     delete[] empty_data;
     delete[] int_data;
 }
