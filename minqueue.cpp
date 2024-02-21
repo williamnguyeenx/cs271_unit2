@@ -113,12 +113,6 @@ MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
     if (this != &A) // Prevent self-assignment
         delete [] ptrHeap; // Deallocate original heap
 
-    if (n < 0) // Ensure n is not negative
-    {
-        cout << "Array size cannot be negative" << endl;
-        return;
-    }
-
     array = A.array; // Set the capacity to A's capacity
     heap = A.heap; // Set the heap size to A's heap size
     ptrHeap = new T[array]; // Allocate memory for the new heap
