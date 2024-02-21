@@ -40,7 +40,7 @@ class MinQueue{
         MinQueue<T>         operator=           (const MinQueue<T> &A);
         void                insert              (const T& x);
         T&                  min                 (void);
-        T&                  extract_min         (void);
+        T                   extract_min         (void);
         void                decrease_key        (int i, T k);
         void                min_heapify         (int i);
         void                build_heap          (void);

@@ -108,6 +108,7 @@ MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
     if (n < 0) // Ensure n is not negative
     {
         cout << "Array size cannot be negative" << endl;
+        return;
     }
 
     array = A.array; // Set the capacity to A's capacity
@@ -130,9 +131,8 @@ MinQueue<T> MinQueue<T>::operator= ( const MinQueue<T> &A )
 // Parameter: T x - element to be inserted
 // Return value: None
 // Pre-condition: MinQueue object have spare capacity for new element(s)
-// Post-condition: Updated MinQueue object with the new element
+// Post-condition: Updated MinQueue object with the new element inserted
 //========================================================
-
 template <class T>
 void MinQueue<T>::insert(const T& x)
 {
@@ -148,8 +148,7 @@ void MinQueue<T>::insert(const T& x)
     {
         swap(ptrheap[i], ptrHeap[parent(i)]); // Constantly switch val at i so that it's smaller than right hand side
         i = parent(i); // Run from parent leaf to execute swapping if needed
-    }
-   
+    }  
 }
 
 //========================================================
@@ -164,11 +163,12 @@ void MinQueue<T>::insert(const T& x)
 template <class T>
 T& MinQueue<T>::min(void)
 {
-    if (array < 1 || heap < 1)
+    if (heap == 0)
     {
-        cout << "Heap is empty" << endl;
+        cout << "Heap is empty" << endl; // Not return if heap is empty
+        return;
     }
-    return ptrHeap[0];
+    return ptrHeap[0]; // Return the first element in heap because it's the smallest
 }
 
 //========================================================
@@ -182,13 +182,22 @@ T& MinQueue<T>::min(void)
 //========================================================
 
 template <class T>
-T& MinQueue<T>::extract_min(void)
+T MinQueue<T>::extract_min(void)
 {
-    T min = min();
-    ptrHeap[0] = ptrHeap[heap-1];
-    heap--;
-    min_heapify(1);
-    return min;
+    if (heap == 0)
+    {
+        cout << "Heap is empty" << endl; // Not return if heap is empty
+        return;
+    }
+
+    T minElement = ptrHeap[0]; // Min element is the first element
+    ptrHeap[0] = ptrHeap[heap-1]; // Push first element to the bottom 
+    heap--; // Decrease the size of the heap to remove last element from heap
+
+    if (heap > 0)
+        min_heapify(0); // Restore the min-heap property
+
+    return minElement; // Return the minimum element
 }
 
 //========================================================
@@ -203,7 +212,7 @@ T& MinQueue<T>::extract_min(void)
 //========================================================
 
 template <class T>
-void MinQueue<T>::decrease_key( int i, T k )
+void MinQueue<T>::decrease_key(int i, T k)
 {
     if (ptrHeap[i] < k )
     {
