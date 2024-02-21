@@ -46,7 +46,7 @@ MinQueue<T>::MinQueue( void )
 //========================================================
 
 template <class T>
-MinQueue<T>::MinQueue( const MinQueue<T> &A, int n )
+MinQueue<T>::MinQueue( T* A, int n )
 {
     if (n < 0) // Ensure n is not negative
     {
@@ -64,22 +64,6 @@ MinQueue<T>::MinQueue( const MinQueue<T> &A, int n )
 
     build_heap(); // Transform the array into a min heap
 }
-
-// template <class T>
-// MinQueue<T>::MinQueue(const MinQueue<T>& A, int n) {
-//     array = n; 
-//     if (A.heap < n) {
-//         heap = A.heap;
-//     } else {
-//         heap = n;
-//     }
-//     ptrHeap = new T[array];
-
-//     for (int i = 0; i < heap; i++) 
-//     { 
-//         ptrHeap[i] = A.ptrHeap[i]; 
-//     }
-//     build_heap(); 
 
 
 //========================================================
@@ -303,32 +287,23 @@ void MinQueue<T>::build_heap( void )
 //========================================================
 
 template <class T>
-void MinQueue<T>::sort(MinQueue<T> &A)
+void MinQueue<T>::sort(T* A)
 {
     build_heap();
     for (int i = array; i >= 2; i--)
     {
-        T* temp = ptrHeap[0]; //store val in ptr
+        T temp = ptrHeap[0]; 
         ptrHeap[0] = ptrHeap[i];
         ptrHeap[i] = temp;
-        A[array-i-1] = ptrHeap[i]; // A is const, cant modify
+        A[array-i-1] = ptrHeap[i]; 
         heap--;
         min_heapify(0);
     }
 }
 
-// template <class T>
-// void MinQueue<T>::sort(T* A)  //not constant 
-// { 
-//     build_heap(); 
-//     for (int i = heap - 1; i >= 1; i--) {
-//         T temp = ptrHeap[0];
-//         ptrHeap[0] = ptrHeap[i];
-//         ptrHeap[i] = temp;
-//         A[heap - 1 - i] = temp;  //correct indexing
-//         heap--; 
-//         min_heapify(0); 
-//     }
+//int size = heap; 
+ // { 
+ //     A[i] = extract_min();
 // }
 
 //========================================================
@@ -365,6 +340,26 @@ void MinQueue<T>::set( int i, const T& val )
 {
     ptrHeap[i] = val;
 }
+
+// {
+//     if (i >= 0 && i < heap) 
+//     {
+//         ptrHeap[i] = val;
+
+//         if (i != 0 && ptrHeap[i] < ptrHeap[parent(i)]) 
+//         {
+//             while (i != 0 && ptrHeap[parent(i)] > ptrHeap[i]) 
+//             {
+//                 swap(ptrHeap[i], ptrHeap[parent(i)]);
+//                 i = parent(i);
+//             }
+//         }
+
+//         else {
+//             min_heapify(i); // Adjust the subtree at i to maintain the min-heap property.
+//         }
+//     }
+// }
 
 //========================================================
 // allocate

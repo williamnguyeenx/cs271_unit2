@@ -5,7 +5,7 @@
 // This file contains the Minqueue class declaration.  
 //========================================================
 #include <iostream>
-
+#include <cmath>
 using namespace std;
 
 #ifndef MINQUEUE_H
@@ -35,7 +35,7 @@ class MinQueue{
 
     public:
                             MinQueue            (void);
-                            MinQueue            (const MinQueue<T> &A, int n);
+                            MinQueue            (T* A, int n);
                             ~MinQueue           (void);
         MinQueue<T>         operator=           (const MinQueue<T> &A);
         void                insert              (const T& x);
@@ -44,7 +44,7 @@ class MinQueue{
         void                decrease_key        (int i, T k);
         void                min_heapify         (int i);
         void                build_heap          (void);
-        void                sort                (MinQueue<T> &A);
+        void                sort                (T*A);
         string              to_string           (void) const;
         void                set                 (int i, const T& val);
         void                allocate            (int n);
@@ -61,6 +61,6 @@ friend std::ostream& operator<<(std::ostream& os, const MinQueue<T>& A) {
     }
 };
 
-#include "minqueue.cpp"
+// #include "minqueue.cpp"
 #endif
 
